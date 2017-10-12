@@ -57,8 +57,6 @@ p6_test_assert_run_ok() {
     local rc=$(cat $dir/rv)
 
     p6_test_assert_eq "$rc" "0" "$description" "$reason"
-
-    echo $rc
 }
 
 p6_test_assert_run_not_ok() {
@@ -68,9 +66,7 @@ p6_test_assert_run_not_ok() {
     local dir=$(p6_test_dir)
     local rc=$(cat $dir/rv)
 
-    p6_test_assert_ne "$rc" "0" "$description" "$reason"
-
-    echo $rc
+    p6_test_assert_not_eq "$rc" "0" "$description" "$reason"
 }
 
 p6_test_assert_eq() {
