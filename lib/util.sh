@@ -33,6 +33,7 @@ p6_test__prep() {
     P6_TEST_DIR=$(p6_test_dir "t")
     P6_TEST_DIR_ORIG=$(pwd)
     cd $P6_TEST_DIR
+    set -e
 }
 
 p6_test__bailout() {
@@ -42,6 +43,7 @@ p6_test__bailout() {
 
 p6_test__cleanup() {
 
+    set +e
     cd $P6_TEST_DIR_ORIG
 #    rm -rf $P6_TEST_DIR
 
