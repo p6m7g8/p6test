@@ -42,6 +42,12 @@ p6_test_run_stderr() {
     cat $dir/stderr
 }
 
+p6_test_run_rc() {
+
+    local dir=$(p6_test_dir)
+    cat $dir/rv
+}
+
 ##############################################################################
 #
 # Assertions.

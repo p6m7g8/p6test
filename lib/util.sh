@@ -1,6 +1,6 @@
 P6_TEST_DIR_BASE=${TMPDIR:-/tmp}/p6test
 P6_TEST_DIR=
-P6_TEST_DIR_ORIG=
+P6_TEST_DIR_ORIG=`pwd`
 P6_TEST_BAIL_FILE=$P6_TEST_DIR_BASE/bail
 
 p6_test_dir() {
@@ -31,7 +31,6 @@ p6_test__initialize() {
 p6_test__prep() {
 
     P6_TEST_DIR=$(p6_test_dir "t")
-    P6_TEST_DIR_ORIG=$(pwd)
     cd $P6_TEST_DIR
 }
 
@@ -43,7 +42,7 @@ p6_test__bailout() {
 p6_test__cleanup() {
 
     cd $P6_TEST_DIR_ORIG
-#    rm -rf $P6_TEST_DIR
+    rm -rf $P6_TEST_DIR
 
     if [ -e $P6_TEST_BAIL_FILE ]; then
 	echo 1
