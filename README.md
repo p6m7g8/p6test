@@ -1,3 +1,11 @@
+p6test/
+  Tester (api.sh)
+    Backends
+      Tap (tap.sh)
+  Harness 
+  Asserts (asserts.sh)
+  Colorizer (colors.sh)
+
 # Assertions
 - p6_test_assert_blank()
 - p6_test_assert_contains()
