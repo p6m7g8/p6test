@@ -22,6 +22,7 @@ p6_test_dir() {
 p6_test__initialize() {
     local n="$1"
 
+    trap p6_test_teardown 0 1 2 3 6 14 15
     mkdir -p $P6_TEST_DIR_BASE
 
     echo 1 > $P6_TEST_DIR_BASE/i

@@ -54,10 +54,14 @@ p6_test_colorize__say() {
     local code_fg=$(p6_test_colorize__color_to_code "$color_fg")
     local code_bg=$(p6_test_colorize__color_to_code "$color_bg")
 
-    tput setaf "$code_fg"
-    tput setab "$code_bg"
+    if [ -z "$P6_TEST_COLOR_OFF" ]; then
+       tput setaf "$code_fg"
+       tput setab "$code_bg"
+    fi
     echo "$msg\c"
-    tput sgr0
+    if [ -z "$P6_TEST_COLOR_OFF" ]; then
+       tput sgr0
+    fi
     echo
 }
 
