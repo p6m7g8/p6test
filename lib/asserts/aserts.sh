@@ -193,5 +193,4 @@ p6_test_assert_not_blank() {
     fi
 
     return $rv
-
 }

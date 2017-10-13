@@ -8,46 +8,50 @@ p6_test_harness_test_run() {
     local T=0
     local F=0
 
+    ## Setup env
     local test_env=$(env | egrep "^(EDITOR|DISPLAY|HOME|PWD|SHELL|SHLVL|TMPDIR|USER|TERM)=")
     test_env="$test_env P6_TEST_COLOR_OFF=1"
 
-    local d0=$(date "+%s")
-    if [ -n "$P6_TEST_VERBOSE" ]; then
-	env -i $test_env /bin/sh $file | tee /tmp/p6-foo.log
-    else
-	env -i $test_env /bin/sh $file > /tmp/p6-foo.log
-    fi
-    local dn=$(date "+%s")
-    local d=$(($dn-$d0))
+    ## Time and run
+    local dp0=$(perl -MTime::HiRes -e '($seconds, $microseconds) = Time::HiRes::gettimeofday(); print "$seconds.$microseconds"')
 
-    local line
+    P6_TEST_LOG_FILE=/tmp/p6-test.$$.tmp
+    env -i $test_env /bin/sh $file > /tmp/p6-test.$$.tmp
+    local dpn=$(perl -MTime::HiRes -e '($seconds, $microseconds) = Time::HiRes::gettimeofday(); print "$seconds.$microseconds"')
+
+    ## Cal time
+    local dp=$(echo "$dpn-$dp0" | bc -lq)
+
     local IFS='
 '
-    for line in $(cat /tmp/p6-foo.log); do
+    local line
+    for line in $(cat $P6_TEST_LOG_FILE); do
 	case $line in
 	    1..*)
-		t=$(echo $line | sed -e 's,^1..,,')
+		t=$(echo $line | sed -e 's,^1..,,' -e 's, *,,')
 		;;
 	    ok\ *SKIP*\ *)
-		S=$(($s+1))
+		S=$(($S+1))
 		;;
 	    not\ *TODO\ *)
-		T=$(($c+1))
+		T=$(($T+1))
 		;;
 	    not\ ok*)
-		F=$(($f+1))
+		F=$(($F+1))
 		;;
 	    ok\ *)
-		s=$(($i+1))
+		s=$(($s+1))
 		;;
 	esac
     done
+
+    rm -f $P6_TEST_LOG_FILE
 
     local r=$(($S+$T+$F+$s))
     local P=$(($S+$s))
     local p=$(echo "scale=2; ($P/$t)*100" | bc -lq)
 
-    echo "$t $i $s $S $T $F $r $p $P $d"
+    echo "t=$t, i=$i, s=$s, S=$S, T=$T, F=$F, r=$r, p=$p, P=$P, dp=$dp"
 }
 
 p6_test_harness_tests_run() {
@@ -68,24 +72,32 @@ p6_test_harness_tests_run() {
     local file
     for file in $(cd $dir ; ls -1); do
 	local vals=$(p6_test_harness_test_run "$dir/$file")
-	local ti=$(echo $vals | awk '{ print $1 }')
-	local Pi=$(echo $vals | awk '{ print $9 }')
-	local di=$(echo $vals | awk '{ print $10 }')
+	local ti=$(echo $vals | grep -o 't=[0-9]*'  | sed -e 's,t=,,')
+	local Pi=$(echo $vals | grep -o 'P=[0-9]*'  | sed -e 's,P=,,')
+	local di=$(echo $vals | grep -o 'dp=[.0-9]*' | sed -e 's,dp=,,')
 
-	d=$(($d+$di))
-	P=$(($P+$Pi))
 	t=$(($t+$ti))
+	P=$(($P+$Pi))
+	d=$(echo "$d+$di" | bc -lq)
+
 	f=$(($f+1))
     done
 
     local result
+    local msg
     if [ $P -ne $t ]; then
+	msg=results
 	result=FAIL
     else
+	msg=ok
 	result=PASS
     fi
 
-    echo "msg"
+    case $d in
+	.[0-9]*) d="0$d" ;;
+    esac
+
+    echo "$msg"
     echo "Files=$f, Tests=$t, $d wallclock secs"
     echo "Result: $result"
 }
