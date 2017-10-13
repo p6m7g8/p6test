@@ -11,11 +11,14 @@ p6_test_harness_test_run() {
     local test_env=$(env | egrep "^(EDITOR|DISPLAY|HOME|PWD|SHELL|SHLVL|TMPDIR|USER|TERM)=")
     test_env="$test_env P6_TEST_COLOR_OFF=1"
 
+    local d0=$(date "+%s")
     if [ -n "$P6_TEST_VERBOSE" ]; then
 	env -i $test_env /bin/sh $file | tee /tmp/p6-foo.log
     else
 	env -i $test_env /bin/sh $file > /tmp/p6-foo.log
     fi
+    local dn=$(date "+%s")
+    local d=$(($dn-$d0))
 
     local line
     local IFS='
@@ -44,7 +47,7 @@ p6_test_harness_test_run() {
     local P=$(($S+$s))
     local p=$(echo "scale=2; ($P/$t)*100" | bc -lq)
 
-    echo "$t $i $s $S $T $F $r $p $P"
+    echo "$t $i $s $S $T $F $r $p $P $d"
 }
 
 p6_test_harness_tests_run() {
@@ -60,13 +63,16 @@ p6_test_harness_tests_run() {
     local r=
     local p=
     local P=
+    local d=0
 
     local file
     for file in $(cd $dir ; ls -1); do
 	local vals=$(p6_test_harness_test_run "$dir/$file")
 	local ti=$(echo $vals | awk '{ print $1 }')
 	local Pi=$(echo $vals | awk '{ print $9 }')
+	local di=$(echo $vals | awk '{ print $10 }')
 
+	d=$(($d+$di))
 	P=$(($P+$Pi))
 	t=$(($t+$ti))
 	f=$(($f+1))
@@ -80,6 +86,6 @@ p6_test_harness_tests_run() {
     fi
 
     echo "msg"
-    echo "Files=$f, Tests=$t, $s wallclock secs ( $usr usr  $sys sys +  $cusr cusr  $csys csys =  $cpu CPU)"
+    echo "Files=$f, Tests=$t, $d wallclock secs"
     echo "Result: $result"
 }
