@@ -16,6 +16,7 @@
 ###############################################################################
 p6_test_run() {
     local func="$1"
+    shift 1
     local args="$@"
 
     local dir=$(p6_test_dir)
@@ -25,7 +26,7 @@ p6_test_run() {
     local stderr=$dir/stderr
     local rv=$dir/rv
 
-    eval "$func" >$stdout 2>$stderr
+    eval "$func $@" >$stdout 2>$stderr
     local rc=$?
     echo $rc > $rv
 }
@@ -90,6 +91,7 @@ p6_test_assert_eq() {
 	*)
 	    rv=0
 	    p6_test_tap_not_ok "$description" "$reason"
+	    p6_test_tap_diagnostic "expected [$const], got [$val]"
 	    ;;
     esac
 
@@ -107,6 +109,7 @@ p6_test_assert_not_eq() {
 	$const)
 	    rv=0
 	    p6_test_tap_not_ok "$description" "$reason"
+	    p6_test_tap_diagnostic "expected [$const], got [$val]"
 	    ;;
 	*)
 	    rv=1
@@ -124,19 +127,31 @@ p6_test_assert_contains() {
     local reason="$4"
 
     local rv=-1
-    case $const in
-	$val)
+    case $val in
+	$const)
 	    rv=1
 	    p6_test_tap_ok "$description" "$reason"
 	    ;;
 	*)
 	    rv=0
 	    p6_test_tap_not_ok "$description" "$reason"
+	    p6_test_tap_diagnostic "expected [$const], got [$val]"
 	    ;;
     esac
 
     return $rv
+}
 
+p6_test_assert_len() {
+    local val="$1"
+    local const="$2"
+    local description="$3"
+    local reason="$4"
+
+    local len=$(echo $val | wc -m | awk '{print $1}')
+    len=$(($len-1))
+
+    p6_test_assert_eq "$len" "$const" "$description" "$reason"
 }
 
 p6_test_assert_not_contains() {
@@ -146,10 +161,11 @@ p6_test_assert_not_contains() {
     local reason="$4"
 
     local rv=-1
-    case $const in
-	$val)
+    case $val in
+	$const)
 	    rv=0
 	    p6_test_tap_not_ok "$description" "$reason"
+	    p6_test_tap_diagnostic "expected [$const], got [$val]"
 	    ;;
 	*)
 	    rv=1
@@ -173,6 +189,7 @@ p6_test_assert_blank() {
     else
 	rv=0
 	p6_test_tap_not_ok "$description" "$reason"
+	p6_test_tap_diagnostic "[$val] is not blank"
     fi
 
     return $rv
@@ -190,6 +207,7 @@ p6_test_assert_not_blank() {
     else
 	rv=0
 	p6_test_tap_not_ok "$description" "$reason"
+	p6_test_tap_diagnostic "[$val] is not blank"
     fi
 
     return $rv

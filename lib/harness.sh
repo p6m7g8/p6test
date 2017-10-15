@@ -9,7 +9,7 @@ p6_test_harness_test_run() {
     local F=0
 
     ## Setup env
-    local test_env=$(env | egrep "^(EDITOR|DISPLAY|HOME|PWD|SHELL|SHLVL|TMPDIR|USER|TERM)=")
+    local test_env=$(env | egrep "^(EDITOR|DISPLAY|HOME|PWD|SHELL|SHLVL|TMPDIR|USER|TERM|PATH)=")
     test_env="$test_env P6_TEST_COLOR_OFF=1"
 
     ## Time and run
@@ -45,6 +45,9 @@ p6_test_harness_test_run() {
 	esac
     done
 
+    if [ -n "$P6_TEST_VERBOSE" ]; then
+	cat $P6_TEST_LOG_FILE >&2
+    fi
     rm -f $P6_TEST_LOG_FILE
 
     local r=$(($S+$T+$F+$s))
@@ -80,6 +83,7 @@ p6_test_harness_tests_run() {
 	P=$(($P+$Pi))
 	d=$(echo "$d+$di" | bc -lq)
 
+	echo "$dir/$file.......... $Pi/$ti $di s"
 	f=$(($f+1))
     done
 
