@@ -2,30 +2,33 @@ p6_test_harness_test_run() {
     local file="$1"
 
     local t=0
-    local i=0
-    local s=0
     local S=0
     local T=0
+    local B=0
     local F=0
+    local s=0
+
+    # Log file
+    local log_file=/tmp/p6-test-$(echo $file | md5).txt
 
     ## Setup env
-    local test_env=$(env | egrep "^(EDITOR|DISPLAY|HOME|PWD|SHELL|SHLVL|TMPDIR|USER|TERM|PATH)=")
-    test_env="$test_env P6_TEST_COLOR_OFF=1"
+    local test_env=$(env | egrep "^(EDITOR|DISPLAY|HOME|PWD|SHELL|SHLVL|TMPDIR|USER|TERM|PATH|P6_TEST_)=")
 
     ## Time and run
     local dp0=$(perl -MTime::HiRes -e '($seconds, $microseconds) = Time::HiRes::gettimeofday(); print "$seconds.$microseconds"')
-
-    P6_TEST_LOG_FILE=/tmp/p6-test.$$.tmp
-    env -i $test_env /bin/sh $file > /tmp/p6-test.$$.tmp
+    env -i P6_TEST_COLOR_OFF=1 $test_env ./$file > $log_file
     local dpn=$(perl -MTime::HiRes -e '($seconds, $microseconds) = Time::HiRes::gettimeofday(); print "$seconds.$microseconds"')
 
-    ## Cal time
-    local dp=$(echo "$dpn-$dp0" | bc -lq)
+    ## Run-time
+    local dp=$(scale=2; echo "$dpn-$dp0" | bc -lq)
+    case $dp in
+	-*) dp=0 ;;
+    esac
 
     local IFS='
 '
     local line
-    for line in $(cat $P6_TEST_LOG_FILE); do
+    for line in $(cat $log_file); do
 	case $line in
 	    1..*)
 		t=$(echo $line | sed -e 's,^1..,,' -e 's, *,,')
@@ -36,6 +39,10 @@ p6_test_harness_test_run() {
 	    not\ *TODO\ *)
 		T=$(($T+1))
 		;;
+	    ok\ *TODO\ *)
+		B=$(($B+1))
+		s=$(($s+1))
+		;;
 	    not\ ok*)
 		F=$(($F+1))
 		;;
@@ -44,17 +51,18 @@ p6_test_harness_test_run() {
 		;;
 	esac
     done
-
-    if [ -n "$P6_TEST_VERBOSE" ]; then
-	cat $P6_TEST_LOG_FILE >&2
-    fi
-    rm -f $P6_TEST_LOG_FILE
+    rm -f $log_file
 
     local r=$(($S+$T+$F+$s))
-    local P=$(($S+$s))
-    local p=$(echo "scale=2; ($P/$t)*100" | bc -lq)
+    local P=$(($S+$s+$T))
 
-    echo "t=$t, i=$i, s=$s, S=$S, T=$T, F=$F, r=$r, p=$p, P=$P, dp=$dp"
+    local p
+    case $t in
+	0) p=0.00 ;;
+	*) p=$(echo "scale=2; ($P+$T/$t)*100" | bc -lq) ;;
+    esac
+
+    echo "t=$t, s=$s, S=$S, T=$T, B=$B, F=$F, r=$r, p=$p, P=$P, dp=$dp"
 }
 
 p6_test_harness_tests_run() {
@@ -66,6 +74,7 @@ p6_test_harness_tests_run() {
     local s=0
     local S=0
     local T=0
+    local B=0
     local F=0
     local r=
     local p=
@@ -75,26 +84,36 @@ p6_test_harness_tests_run() {
     local file
     for file in $(cd $dir ; ls -1); do
 	local vals=$(p6_test_harness_test_run "$dir/$file")
-	local ti=$(echo $vals | grep -o 't=[0-9]*'  | sed -e 's,t=,,')
-	local Pi=$(echo $vals | grep -o 'P=[0-9]*'  | sed -e 's,P=,,')
-	local di=$(echo $vals | grep -o 'dp=[.0-9]*' | sed -e 's,dp=,,')
+	local ti=$(echo $vals | grep -o 't=[0-9]*'   | sed -e 's,t=,,')
+	local Pi=$(echo $vals | grep -o 'P=[0-9]*'   | sed -e 's,P=,,')
+	local Si=$(echo $vals | grep -o 'S=[0-9]*'   | sed -e 's,S=,,')
+	local Ti=$(echo $vals | grep -o 'T=[0-9]*'   | sed -e 's,T=,,')
+	local Bi=$(echo $vals | grep -o 'B=[0-9]*'   | sed -e 's,B=,,')
+	local di=$(echo $vals | grep -o 'dp=[0-9.\-]*' | sed -e 's,dp=,,')
 
 	t=$(($t+$ti))
 	P=$(($P+$Pi))
+	B=$(($B+$Bi))
+	S=$(($S+$Si))
+	T=$(($T+$Ti))
 	d=$(echo "$d+$di" | bc -lq)
 
-	echo "$dir/$file.......... $Pi/$ti $di s"
+	p6_test_harness___results "$dir/$file" "${di}" "$Pi" "$ti" "$Bi" "$Ti" "$Si"
 	f=$(($f+1))
     done
 
     local result
     local msg
-    if [ $P -ne $t ]; then
+    if [ x"$P" != x"$t" ]; then
 	msg=results
 	result=FAIL
     else
 	msg=ok
-	result=PASS
+	if [ $B -gt 0 ]; then
+	    result=PROVISIONAL
+	else
+	    result=PASS
+	fi
     fi
 
     case $d in
@@ -102,6 +121,51 @@ p6_test_harness_tests_run() {
     esac
 
     echo "$msg"
-    echo "Files=$f, Tests=$t, $d wallclock secs"
+    echo "Files=$f, Tests=$P/$t, Todo=$T, Fixed=$B, Skipped=$S, $d wallclock secs"
     echo "Result: $result"
+}
+
+p6_test_harness___results() {
+    local name="$1"
+    local duration="$2"
+    local passed="$3"
+    local total="$4"
+    local bonus="$5"
+    local todo="$6"
+
+    case $duration in
+	.[0-9]*) duration="0$duration" ;;
+    esac
+
+    local len=$(echo $name | wc -m | awk '{print $1}')
+    len=$(($len-1))
+
+    local line=$name
+    local i=$len
+    while [ $i -lt 48 ]; do
+	line="$line."
+	i=$(($i+1))
+    done
+
+    if [ $bonus -gt 0 ]; then
+	line="$line ${duration}s $passed/$total [$bonus now pass]"
+    else
+	if [ $todo -gt 0 ]; then
+	    line="$line ${duration}s $passed/$total, todo=$todo"
+	else
+	    line="$line ${duration}s $passed/$total"
+	fi
+    fi
+
+    local color
+    if [ $passed -eq $total ]; then
+	if [ $bonus -gt 0 ]; then
+	    color=yellow
+	else
+	    color=green
+	fi
+    else
+	color=red
+    fi
+    p6_test_colorize__say "$color" "black" "$line"
 }

@@ -72,11 +72,30 @@ p6_test_skip() {
     exit 0
 }
 
-p6_test_todo() {
+p6_test_ok() {
     local description="$1"
-    local reason="$2"
 
-    p6_test_tap_todo "$description" "$reason"
+    p6_test_tap_ok "$description"
+}
+
+p6_test_not_ok() {
+    local description="$1"
+
+    p6_test_tap_not_ok "$description"
+}
+
+p6_test_todo() {
+    local val="$1"
+    local const="$2"
+    local description="$3"
+    local reason="$4"
+
+    if [ x"$val" = x"$const" ]; then
+	p6_test_tap_todo_bonus "$description" "$reason"
+    else
+	p6_test_tap_todo_planned "$description" "$reason"
+	p6_test_diagnostic "expected [$const], received [$val]"
+    fi
 }
 
 p6_test_diagnostic() {

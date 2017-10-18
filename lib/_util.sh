@@ -24,7 +24,6 @@ p6_test__init() {
     P6_TEST_DIR=$P6_DIR/test
     P6_TEST_DIR_ROOT=
 
-    P6_TEST_LOG_FILE=$P6_DIR/log
     P6_TEST_BAIL_FILE=$P6_TEST_DIR/bail
 
     P6_TEST_DIR_ORIG=`pwd`

@@ -15,18 +15,17 @@
 # XXX: fixtures and stdin
 ###############################################################################
 p6_test_run() {
-    local func="$1"
-    shift 1
-    local args="$@"
 
     local dir=$(p6_test_dir)
 
+    local cli=$dir/cli
     local stdin=$dir/in
     local stdout=$dir/stdout
     local stderr=$dir/stderr
     local rv=$dir/rv
 
-    eval "$func $@" >$stdout 2>$stderr
+    echo "$@" > $dir/cli
+    eval "$@" >$stdout 2>$stderr
     local rc=$?
     echo $rc > $rv
 }
@@ -58,12 +57,44 @@ p6_test_run_rc() {
 ###############################################################################
 p6_test_assert_run_ok() {
     local description="$1"
+    local rv="${2:-0}"
+
+    p6_test_assert_run_rc "$description" "$rv"
+    p6_test_assert_run_no_output "$description"
+}
+
+p6_test_assert_run_rc() {
+    local description="$1"
+    local rv="$2"
+
+    local rc=$(p6_test_run_rc)
+
+    if p6_test_assert_eq "$rc" "$rv" "$description" "$reason"; then
+	p6_test_tap_diagnostic "stdout: $(p6_test_run_stdout)"
+	p6_test_tap_diagnostic "stderr: $(p6_test_run_stderr)"
+    fi
+}
+
+p6_test_assert_run_no_output() {
+    local description="$1"
     local reason="$2"
 
-    local dir=$(p6_test_dir)
-    local rc=$(cat $dir/rv)
+    p6_test_assert_run_no_stdout "$description" "$reason"
+    p6_test_assert_run_no_stderr "$description" "$reason"
+}
 
-    p6_test_assert_eq "$rc" "0" "$description" "$reason"
+p6_test_assert_run_no_stdout() {
+    local description="$1"
+    local reason="$2"
+
+    p6_test_assert_blank "$(p6_test_run_stdout)" "$description: no stdout"
+}
+
+p6_test_assert_run_no_stderr() {
+    local description="$1"
+    local reason="$2"
+
+    p6_test_assert_blank "$(p6_test_run_stderr)" "$description: no stderr"
 }
 
 p6_test_assert_run_not_ok() {

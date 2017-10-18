@@ -34,12 +34,20 @@ p6_test_tap_skip() {
     p6_test_tap__line "ok" "$i" "$description" "SKIP" "$reason"
 }
 
-p6_test_tap_todo() {
+p6_test_tap_todo_planned() {
     local description="$1"
     local reason="$2"
 
     local i=$(p6_test_tap__i)
     p6_test_tap__line "not ok" "$i" "$description" "TODO" "$reason"
+}
+
+p6_test_tap_todo_bonus() {
+    local description="$1"
+    local reason="$2"
+
+    local i=$(p6_test_tap__i)
+    p6_test_tap__line "ok" "$i" "$description" "TODO" "$reason"
 }
 
 p6_test_tap_diagnostic() {
