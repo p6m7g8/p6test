@@ -1,3 +1,14 @@
+# t - total number of planed tests. From the TAP plan.
+# s - number of tests ok (includes TODO tests not accidentally passing)
+# S - number of tests SKIPPED
+# T - number of tests TODO (currently correctly failing as its TODO)
+# B - GOOD NEWS, number of tests accidentally passing, REMOVE TODO.
+# F - BAD NEWS, you have bugs, number of tests not ok
+# r - number of tests run (S+T+F+s)
+# P - number of tests ok (S+s+T)
+# p - percentage of tests passing (P/t)*100
+# d - time delta
+# lf- log_file, will be -e if F > 0
 p6_test_harness_test_run() {
     local file="$1"
 
