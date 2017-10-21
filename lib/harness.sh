@@ -62,7 +62,10 @@ p6_test_harness_test_run() {
 		;;
 	esac
     done
-    rm -f $log_file
+
+    if [ $F -eq 0 ]; then
+	rm -f $log_file
+    fi
 
     local r=$(($S+$T+$F+$s))
     local P=$(($S+$s+$T))
@@ -70,10 +73,14 @@ p6_test_harness_test_run() {
     local p
     case $t in
 	0) p=0.00 ;;
-	*) p=$(echo "scale=2; ($P+$T/$t)*100" | bc -lq) ;;
+	*) p=$(echo "scale=3; ($P/$t)*100" | bc -lq) ;;
     esac
 
-    echo "t=$t, s=$s, S=$S, T=$T, B=$B, F=$F, r=$r, p=$p, P=$P, dp=$dp"
+    # 0m0.330s
+    local d=$(awk '/real/ { print $2 }' $log_file_times | sed -e 's,^0m,,' -e 's/s//')
+
+    echo "t=$t, s=$s, S=$S, T=$T, B=$B, F=$F, r=$r, p=$p, P=$P, d=$d, lf=$log_file, lft=$log_file_times"
+#    echo "t=$t, s=$s, S=$S, T=$T, B=$B, F=$F, r=$r, p=$p, P=$P, d=$d, lf=$log_file, lft=$log_file_times" >&2
 }
 
 p6_test_harness_tests_run() {
@@ -88,35 +95,38 @@ p6_test_harness_tests_run() {
     local B=0
     local F=0
     local r=
-    local p=
+    local p=0
     local P=
     local d=0
 
     local file
     for file in $(cd $dir ; ls -1); do
 	local vals=$(p6_test_harness_test_run "$dir/$file")
-	local ti=$(echo $vals | grep -o 't=[0-9]*'   | sed -e 's,t=,,')
-	local Pi=$(echo $vals | grep -o 'P=[0-9]*'   | sed -e 's,P=,,')
-	local Si=$(echo $vals | grep -o 'S=[0-9]*'   | sed -e 's,S=,,')
-	local Ti=$(echo $vals | grep -o 'T=[0-9]*'   | sed -e 's,T=,,')
-	local Bi=$(echo $vals | grep -o 'B=[0-9]*'   | sed -e 's,B=,,')
-	local di=$(echo $vals | grep -o 'dp=[0-9.\-]*' | sed -e 's,dp=,,')
+	local ti=$(echo $vals | grep -o 't=[0-9]*'       | sed -e 's,t=,,')
+	local pi=$(echo $vals | grep -o '[^d]p=[0-9\.]*' | sed -e 's,p=,,')
+	local Pi=$(echo $vals | grep -o 'P=[0-9]*'       | sed -e 's,P=,,')
+	local Si=$(echo $vals | grep -o 'S=[0-9]*'       | sed -e 's,S=,,')
+	local Ti=$(echo $vals | grep -o 'T=[0-9]*'       | sed -e 's,T=,,')
+	local Bi=$(echo $vals | grep -o 'B=[0-9]*'       | sed -e 's,B=,,')
+	local di=$(echo $vals | grep -o 'd=[0-9.\-]*'    | sed -e 's,d=,,')
 
 	t=$(($t+$ti))
 	P=$(($P+$Pi))
 	B=$(($B+$Bi))
 	S=$(($S+$Si))
 	T=$(($T+$Ti))
-	d=$(echo "$d+$di" | bc -lq)
+	p=$(echo "$p+$pi" | bc -q)
+	d=$(echo "$d+$di" | bc -q)
 
-	p6_test_harness___results "$dir/$file" "${di}" "$Pi" "$ti" "$Bi" "$Ti" "$Si"
+	p6_test_harness___results "$dir/$file" "$di" "$pi" "$Pi" "$ti" "$Bi" "$Ti" "$Si" >&2
 	f=$(($f+1))
     done
 
     local result
     local msg
     if [ x"$P" != x"$t" ]; then
-	msg=results
+	msg=$(egrep '^not ok|^#' /tmp/p6-test-*.txt)
+	rm -f /tmp/p6-test-*.txt*
 	result=FAIL
     else
 	msg=ok
@@ -139,17 +149,20 @@ p6_test_harness_tests_run() {
 p6_test_harness___results() {
     local name="$1"
     local duration="$2"
-    local passed="$3"
-    local total="$4"
-    local bonus="$5"
-    local todo="$6"
+    local prcnt_passed="$3"
+    local passed="$4"
+    local total="$5"
+    local bonus="$6"
+    local todo="$7"
+    local skipped="$8"
 
     case $duration in
 	.[0-9]*) duration="0$duration" ;;
     esac
-
-    local len=$(echo $name | wc -m | awk '{print $1}')
-    len=$(($len-1))
+    if [ x"$duration" = x"0" ]; then
+	duration=0.000000
+    fi
+    local len=${#name}
 
     local line=$name
     local i=$len
