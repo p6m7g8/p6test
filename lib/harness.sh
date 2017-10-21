@@ -19,25 +19,25 @@ p6_test_harness_test_run() {
     local F=0
     local s=0
 
-    # Log file
-    local log_file=/tmp/p6-test-$(echo $file | md5).txt
-
     ## Setup env
     local test_env=$(env | egrep "^(EDITOR|DISPLAY|HOME|PWD|SHELL|SHLVL|TMPDIR|USER|TERM|PATH|P6_TEST_)=")
 
-    ## Time and run
-    local dp0=$(perl -MTime::HiRes -e '($seconds, $microseconds) = Time::HiRes::gettimeofday(); print "$seconds.$microseconds"')
-    env -i P6_TEST_COLOR_OFF=1 $test_env ./$file > $log_file
-    local dpn=$(perl -MTime::HiRes -e '($seconds, $microseconds) = Time::HiRes::gettimeofday(); print "$seconds.$microseconds"')
+    # Log file
+    local log_file=/tmp/p6-test-$(echo $file | md5).txt
+    local log_file_times=$log_file-time
 
-    ## Run-time
-    local dp=$(scale=2; echo "$dpn-$dp0" | bc -lq)
-    case $dp in
-	-*) dp=0 ;;
-    esac
+    # Dupe and redirect
+    exec 3>&1 4>&2 >$log_file 2>$log_file_times
+
+    ## Time and run
+    time env -i P6_TEST_COLOR_OFF=1 $test_env ./$file
+
+    # Restore
+    exec 1>&3 2>&4
 
     local IFS='
 '
+
     local line
     for line in $(cat $log_file); do
 	case $line in
