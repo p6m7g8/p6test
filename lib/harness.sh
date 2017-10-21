@@ -171,14 +171,19 @@ p6_test_harness___results() {
 	i=$(($i+1))
     done
 
+    passed=$(p6_test_harness__zero_lpad "3" "$passed")
+    total=$(p6_test_harness__zero_lpad "3" "$total")
+
+    line="$line ${duration}s $passed/$total $prcnt_passed%"
     if [ $bonus -gt 0 ]; then
-	line="$line ${duration}s $passed/$total [$bonus now pass]"
+	line="$line [$bonus now pass]"
     else
 	if [ $todo -gt 0 ]; then
-	    line="$line ${duration}s $passed/$total, todo=$todo"
-	else
-	    line="$line ${duration}s $passed/$total"
+	    line="$line, todo=$todo"
 	fi
+    fi
+    if [ $skipped -gt 0 ]; then
+	line="$line, skipped=$skipped"
     fi
 
     local color
@@ -192,4 +197,19 @@ p6_test_harness___results() {
 	color=red
     fi
     p6_test_colorize__say "$color" "black" "$line"
+}
+
+p6_test_harness__zero_lpad() {
+    local len="$1"
+    local str="$2"
+
+    local str_len=${#str}
+
+    local i=$str_len
+    while [ $i -lt $len ]; do
+	str="0$str"
+	i=$(($i+1))
+    done
+
+    echo "$str"
 }
