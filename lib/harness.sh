@@ -8,7 +8,7 @@
 # P - number of tests ok (S+s+T)
 # p - percentage of tests passing (P/t)*100
 # d - time delta
-# lf- log_file, will be -e if F > 0
+
 p6_test_harness_test_run() {
     local file="$1"
 
@@ -23,8 +23,9 @@ p6_test_harness_test_run() {
     local test_env=$(env | egrep "^(EDITOR|DISPLAY|HOME|PWD|SHELL|SHLVL|TMPDIR|USER|TERM|PATH|P6_TEST_)=")
 
     # Log file
-    local log_file=/tmp/p6-test-$(echo $file | md5).txt
+    local log_file=/tmp/p6/test/tests/$(basename $file).txt
     local log_file_times=$log_file-time
+    mkdir -p $(dirname $log_file)
 
     # Dupe and redirect
     exec 3>&1 4>&2 >$log_file 2>$log_file_times
@@ -79,8 +80,7 @@ p6_test_harness_test_run() {
     # 0m0.330s
     local d=$(awk '/real/ { print $2 }' $log_file_times | sed -e 's,^0m,,' -e 's/s//')
 
-    echo "t=$t, s=$s, S=$S, T=$T, B=$B, F=$F, r=$r, p=$p, P=$P, d=$d, lf=$log_file, lft=$log_file_times"
-#    echo "t=$t, s=$s, S=$S, T=$T, B=$B, F=$F, r=$r, p=$p, P=$P, d=$d, lf=$log_file, lft=$log_file_times" >&2
+    echo "t=$t, s=$s, S=$S, T=$T, B=$B, F=$F, r=$r, p=$p, P=$P, d=$d"
 }
 
 p6_test_harness_tests_run() {
@@ -126,7 +126,6 @@ p6_test_harness_tests_run() {
     local msg
     if [ x"$P" != x"$t" ]; then
 	msg=$(egrep '^not ok|^#' /tmp/p6-test-*.txt)
-	rm -f /tmp/p6-test-*.txt*
 	result=FAIL
     else
 	msg=ok
@@ -137,13 +136,10 @@ p6_test_harness_tests_run() {
 	fi
     fi
 
-    case $d in
-	.[0-9]*) d="0$d" ;;
-    esac
-
     echo "$msg"
     echo "Files=$f, Tests=$P/$t, Todo=$T, Fixed=$B, Skipped=$S, $d wallclock secs"
     echo "Result: $result"
+    rm -rf /tmp/p6/test
 }
 
 p6_test_harness___results() {
@@ -156,12 +152,6 @@ p6_test_harness___results() {
     local todo="$7"
     local skipped="$8"
 
-    case $duration in
-	.[0-9]*) duration="0$duration" ;;
-    esac
-    if [ x"$duration" = x"0" ]; then
-	duration=0.000000
-    fi
     local len=${#name}
 
     local line=$name
