@@ -157,16 +157,15 @@ p6_test_assert_contains() {
     local description="$3"
     local reason="$4"
 
-    local rv=-1
-    case $val in
-	$const)
-	    rv=1
+    local matched=$(echo "$const" | grep -q "$val" > /dev/null)
+    local rv=$?
+    case $rv in
+	0)
 	    p6_test_tap_ok "$description" "$reason"
 	    ;;
-	*)
-	    rv=0
+	1)
 	    p6_test_tap_not_ok "$description" "$reason"
-	    p6_test_tap_diagnostic "expected [$const], got [$val]"
+	    p6_test_tap_diagnostic "val [$val] is not contained in [$const]"
 	    ;;
     esac
 
@@ -239,6 +238,42 @@ p6_test_assert_not_blank() {
 	rv=0
 	p6_test_tap_not_ok "$description" "$reason"
 	p6_test_tap_diagnostic "[$val] is not blank"
+    fi
+
+    return $rv
+}
+
+p6_test_assert_dir_exists() {
+    local val="$1"
+    local description="$2"
+    local reason="$3"
+
+    local rv=-1
+    if [ -d "$val" ]; then
+	rv=1
+	p6_test_tap_ok "$description" "$reason"
+    else
+	rv=0
+	p6_test_tap_not_ok "$description" "$reason"
+	p6_test_tap_diagnostic "[$val] DNE"
+    fi
+
+    return $rv
+}
+
+p6_test_assert_dir_not_exists() {
+    local val="$1"
+    local description="$2"
+    local reason="$3"
+
+    local rv=-1
+    if [ ! -d "$val" ]; then
+	rv=1
+	p6_test_tap_ok "$description" "$reason"
+    else
+	rv=0
+	p6_test_tap_not_ok "$description" "$reason"
+	p6_test_tap_diagnostic "[$val] DNE"
     fi
 
     return $rv

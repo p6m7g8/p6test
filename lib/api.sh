@@ -121,5 +121,6 @@ p6_test_finish() {
 
 p6_test_teardown() {
 
-    rm -rf $P6_TEST_DIR_BASE
+    true
+    #rm -rf $P6_TEST_DIR
 }

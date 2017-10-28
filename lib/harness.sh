@@ -31,6 +31,7 @@ p6_test_harness_test_run() {
     exec 3>&1 4>&2 >$log_file 2>$log_file_times
 
     ## Time and run
+    chmod 755 $file
     time env -i P6_TEST_COLOR_OFF=1 $test_env ./$file
 
     # Restore
@@ -125,7 +126,7 @@ p6_test_harness_tests_run() {
     local result
     local msg
     if [ x"$P" != x"$t" ]; then
-	msg=$(egrep '^not ok|^#' /tmp/p6-test-*.txt)
+	msg=$(egrep '^not ok|^#' /tmp/p6/test/tests/*.txt)
 	result=FAIL
     else
 	msg=ok
