@@ -80,6 +80,9 @@ p6_test_harness_test_run() {
 
     # 0m0.330s
     local d=$(awk '/real/ { print $2 }' $log_file_times | sed -e 's,^0m,,' -e 's/s//')
+    if [ -z "$d" ]; then
+      d=0
+    fi
 
     echo "t=$t, s=$s, S=$S, T=$T, B=$B, F=$F, r=$r, p=$p, P=$P, d=$d"
     echo "t=$t, s=$s, S=$S, T=$T, B=$B, F=$F, r=$r, p=$p, P=$P, d=$d" >&2
