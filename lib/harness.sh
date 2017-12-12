@@ -95,8 +95,8 @@ p6_test_harness_test_run() {
     TP=10
     Td=11
 
-    echo "t=$Tt s=$Ts S=$TS T=$TT B=$TB F=$TF r=$Tr p=$Tp P=$TP d=T$d"
-    echo "t=$Tt s=$Ts S=$TS T=$TT B=$TB F=$TF r=$Tr p=$Tp P=$TP d=T$d" >&2
+    echo "Tt=$Tt Ts=$Ts TS=$TS TT=$TT TB=$TB TF=$TF Tr=$Tr Tp=$Tp TP=$TP Td=T$d"
+    echo "Tt=$Tt Ts=$Ts TS=$TS TT=$TT TB=$TB TF=$TF Tr=$Tr Tp=$Tp TP=$TP Td=T$d" >&2
 }
 
 p6_test_harness_tests_run() {
@@ -128,13 +128,13 @@ p6_test_harness_tests_run() {
 #        echo "p=[$p], pi=[$pi]"
 #        echo "d=[$d], di=[$di]"
 
-#	local ti=$(echo $vals | grep -o 't=[0-9]*'       | sed -e 's,[^0-9],,g')
-#	local pi=$(echo $vals | grep -o 'p=[0-9\.]*'     | sed -e 's,[^0-9],,g')
-	local Pi=$(echo $vals | grep -o 'P=[0-9]*'       | sed -e 's,[^0-9],,g')
-#	local Si=$(echo $vals | grep -o 'S=[0-9]*'       | sed -e 's,[^0-9],,g')
-#	local Ti=$(echo $vals | grep -o 'T=[0-9]*'       | sed -e 's,[^0-9],,g')
-#	local Bi=$(echo $vals | grep -o 'B=[0-9]*'       | sed -e 's,[^0-9],,g')
-#	local di=$(echo $vals | grep -o 'd=[0-9.\-]*'    | sed -e 's,[^0-9],,g')
+#	local ti=$(echo $vals | grep -o 'Tt=[0-9]*'       | sed -e 's,[^0-9],,g')
+#	local pi=$(echo $vals | grep -o 'Tp=[0-9\.]*'     | sed -e 's,[^0-9],,g')
+	local Pi=$(echo $vals | grep -o 'TP=[0-9]*'       | sed -e 's,[^0-9],,g')
+#	local Si=$(echo $vals | grep -o 'TS=[0-9]*'       | sed -e 's,[^0-9],,g')
+#	local Ti=$(echo $vals | grep -o 'TT=[0-9]*'       | sed -e 's,[^0-9],,g')
+#	local Bi=$(echo $vals | grep -o 'TB=[0-9]*'       | sed -e 's,[^0-9],,g')
+#	local di=$(echo $vals | grep -o 'Td=[0-9.\-]*'    | sed -e 's,[^0-9],,g')
 
         echo "==============> AFTER:"
 #        echo "t=[$t], ti=[$ti]"
