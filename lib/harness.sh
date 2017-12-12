@@ -104,6 +104,7 @@ p6_test_harness_tests_run() {
     local file
     for file in $(cd $dir ; ls -1); do
 	local vals=$(p6_test_harness_test_run "$dir/$file")
+set -x
 	local ti=$(echo $vals | grep -o 't=[0-9]*'       | sed -e 's,t=,,')
 	local pi=$(echo $vals | grep -o '[^d]p=[0-9\.]*' | sed -e 's,p=,,')
 	local Pi=$(echo $vals | grep -o 'P=[0-9]*'       | sed -e 's,P=,,')
@@ -122,6 +123,7 @@ p6_test_harness_tests_run() {
 
 	p6_test_harness___results "$dir/$file" "$di" "$pi" "$Pi" "$ti" "$Bi" "$Ti" "$Si" >&2
 	f=$(($f+1))
+set +x
     done
 
     local result
