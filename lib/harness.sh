@@ -112,7 +112,7 @@ p6_test_harness_tests_run() {
     local F=0
     local r=
     local p=0
-    local P=
+    local P=0
     local d=0
 
     local file
