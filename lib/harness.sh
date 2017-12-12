@@ -92,7 +92,9 @@ p6_test_harness_test_run() {
     F=6
     r=7
     p=8
-    d=9
+    P=10
+    d=11
+
     echo "t=$t s=$s S=$S T=$T B=$B F=$F r=$r p=$p P=$P d=$d"
     echo "t=$t s=$s S=$S T=$T B=$B F=$F r=$r p=$p P=$P d=$d" >&2
 }
