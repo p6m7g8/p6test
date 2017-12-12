@@ -117,7 +117,7 @@ p6_test_harness_tests_run() {
 
     local file
     for file in $(cd $dir ; ls -1); do
-	local vals=$(p6_test_harness_test_run "$dir/$file")
+	local vals="$(p6_test_harness_test_run "$dir/$file")"
 
         echo "==============> BEFORE:"
 #        echo "t=[$t], ti=[$ti]"
