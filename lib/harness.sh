@@ -84,17 +84,6 @@ p6_test_harness_test_run() {
       Td=0
     fi
 
-    Tt=1
-    Ts=2
-    TS=3
-    TT=4
-    TB=5
-    TF=6
-    Tr=7
-    Tp=8
-    TP=10
-    Td=11
-
     echo "Tt=$Tt Ts=$Ts TS=$TS TT=$TT TB=$TB TF=$TF Tr=$Tr Tp=$Tp TP=$TP Td=$Td"
 }
 
