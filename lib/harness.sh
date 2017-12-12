@@ -12,12 +12,12 @@
 p6_test_harness_test_run() {
     local file="$1"
 
-    local t=0
-    local s=0
-    local S=0
-    local T=0
-    local B=0
-    local F=0
+    local Tt=0
+    local Ts=0
+    local TS=0
+    local TT=0
+    local TB=0
+    local TF=0
 
     ## Setup env
     local test_env=$(env | egrep "^(EDITOR|DISPLAY|HOME|PWD|SHELL|SHLVL|TMPDIR|USER|TERM|PATH|P6_TEST_)=")
@@ -35,7 +35,7 @@ p6_test_harness_test_run() {
     time env -i P6_TEST_COLOR_OFF=1 $test_env ./$file
 
     # Restore
-    exec 1>&3 2>&4
+    Texec 1>&3 2>&4
 
     local IFS='
 '
@@ -44,59 +44,59 @@ p6_test_harness_test_run() {
     for line in $(cat $log_file); do
 	case $line in
 	    1..*)
-		t=$(echo $line | sed -e 's,^1..,,' -e 's, *,,')
+		Tt=$(echo $line | sed -e 's,^1..,,' -e 's, *,,')
 		;;
 	    ok\ *SKIP*\ *)
-		S=$(($S+1))
+		TS=$(($TS+1))
 		;;
 	    not\ *TODO\ *)
-		T=$(($T+1))
+		TT=$(($TT+1))
 		;;
 	    ok\ *TODO\ *)
-		B=$(($B+1))
-		s=$(($s+1))
+		TB=$(($TB+1))
+		Ts=$(($Ts+1))
 		;;
 	    not\ ok*)
-		F=$(($F+1))
+		TF=$(($TF+1))
 		;;
 	    ok\ *)
-		s=$(($s+1))
+		Ts=$(($Ts+1))
 		;;
 	esac
     done
 
-#    if [ $F -eq 0 ]; then
+#    if [ $TF -eq 0 ]; then
 #	rm -f $log_file
 #    fi
 
-    local r=$(($S+$T+$F+$s))
-    local P=$(($S+$s+$T))
+    local Tr=$(($TS+$TT+$TF+$Ts))
+    local TP=$(($TS+$Ts+$TT))
 
-    local p
-    case $t in
-	0) p=0.00 ;;
-	*) p=$(echo "scale=3; ($P/$t)*100" | bc -lq) ;;
+    local Tp
+    case $Tt in
+	0) Tp=0.00 ;;
+	*) Tp=$(echo "scale=3; ($TP/$Tt)*100" | bc -lq) ;;
     esac
 
     # 0m0.330s
-    local d=$(awk '/real/ { print $2 }' $log_file_times | sed -e 's,^0m,,' -e 's/s//')
-    if [ -z "$d" ]; then
-      d=0
+    local Td=$(awk '/real/ { print $2 }' $log_file_times | sed -e 's,^0m,,' -e 's/s//')
+    if [ -z "$Td" ]; then
+      Td=0
     fi
 
-    t=1
-    s=2
-    S=3
-    T=4
-    B=5
-    F=6
-    r=7
-    p=8
-    P=10
-    d=11
+    Tt=1
+    Ts=2
+    TS=3
+    TT=4
+    TB=5
+    TF=6
+    Tr=7
+    Tp=8
+    TP=10
+    Td=11
 
-    echo "t=$t s=$s S=$S T=$T B=$B F=$F r=$r p=$p P=$P d=$d"
-    echo "t=$t s=$s S=$S T=$T B=$B F=$F r=$r p=$p P=$P d=$d" >&2
+    echo "t=$Tt s=$Ts S=$TS T=$TT B=$TB F=$TF r=$Tr p=$Tp P=$TP d=T$d"
+    echo "t=$Tt s=$Ts S=$TS T=$TT B=$TB F=$TF r=$Tr p=$Tp P=$TP d=T$d" >&2
 }
 
 p6_test_harness_tests_run() {
