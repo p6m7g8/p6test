@@ -118,6 +118,16 @@ p6_test_harness_tests_run() {
     local file
     for file in $(cd $dir ; ls -1); do
 	local vals=$(p6_test_harness_test_run "$dir/$file")
+
+        echo "==============> BEFORE:"
+        echo "t=[$t], ti=[$ti]"
+        echo "P=[$P], Pi=[$Pi]"
+        echo "B=[$B], Bi=[$Bi]"
+        echo "S=[$S], Si=[$Si]"
+        echo "T=[$T], Ti=[$Ti]"
+        echo "p=[$p], pi=[$pi]"
+        echo "d=[$d], di=[$di]"
+
 	local ti=$(echo $vals | grep -o 't=[0-9]*'       | sed -e 's,[^0-9],,g')
 	local pi=$(echo $vals | grep -o 'p=[0-9\.]*'     | sed -e 's,[^0-9],,g')
 	local Pi=$(echo $vals | grep -o 'P=[0-9]*'       | sed -e 's,[^0-9],,g')
@@ -126,6 +136,7 @@ p6_test_harness_tests_run() {
 	local Bi=$(echo $vals | grep -o 'B=[0-9]*'       | sed -e 's,[^0-9],,g')
 	local di=$(echo $vals | grep -o 'd=[0-9.\-]*'    | sed -e 's,[^0-9],,g')
 
+        echo "==============> AFTER:"
         echo "t=[$t], ti=[$ti]"
         echo "P=[$P], Pi=[$Pi]"
         echo "B=[$B], Bi=[$Bi]"
@@ -133,6 +144,7 @@ p6_test_harness_tests_run() {
         echo "T=[$T], Ti=[$Ti]"
         echo "p=[$p], pi=[$pi]"
         echo "d=[$d], di=[$di]"
+
 	t=$(($t+$ti))
 	P=$(($P+$Pi))
 	B=$(($B+$Bi))
@@ -140,6 +152,15 @@ p6_test_harness_tests_run() {
 	T=$(($T+$Ti))
 	p=$(echo "$p+$pi" | bc -q)
 	d=$(echo "$d+$di" | bc -q)
+
+        echo "==============> ITERATED:"
+        echo "t=[$t], ti=[$ti]"
+        echo "P=[$P], Pi=[$Pi]"
+        echo "B=[$B], Bi=[$Bi]"
+        echo "S=[$S], Si=[$Si]"
+        echo "T=[$T], Ti=[$Ti]"
+        echo "p=[$p], pi=[$pi]"
+        echo "d=[$d], di=[$di]"
 
 	p6_test_harness___results "$dir/$file" "$di" "$pi" "$Pi" "$ti" "$Bi" "$Ti" "$Si" >&2
 	f=$(($f+1))
