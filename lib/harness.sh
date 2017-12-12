@@ -107,13 +107,13 @@ p6_test_harness_tests_run() {
     local file
     for file in $(cd $dir ; ls -1); do
 	local vals=$(p6_test_harness_test_run "$dir/$file")
-	local ti=$(echo $vals | grep -o 't=[0-9]*'       | sed -e 's,t=,,')
-	local pi=$(echo $vals | grep -o 'p=[0-9\.]*'     | sed -e 's,p=,,')
-	local Pi=$(echo $vals | grep -o 'P=[0-9]*'       | sed -e 's,P=,,')
-	local Si=$(echo $vals | grep -o 'S=[0-9]*'       | sed -e 's,S=,,')
-	local Ti=$(echo $vals | grep -o 'T=[0-9]*'       | sed -e 's,T=,,')
-	local Bi=$(echo $vals | grep -o 'B=[0-9]*'       | sed -e 's,B=,,')
-	local di=$(echo $vals | grep -o 'd=[0-9.\-]*'    | sed -e 's,d=,,')
+	local ti=$(echo $vals | grep -o 't=[0-9]*'       | sed -e 's,[^0-9],,g')
+	local pi=$(echo $vals | grep -o 'p=[0-9\.]*'     | sed -e 's,[^0-9],,g')
+	local Pi=$(echo $vals | grep -o 'P=[0-9]*'       | sed -e 's,[^0-9],,g')
+	local Si=$(echo $vals | grep -o 'S=[0-9]*'       | sed -e 's,[^0-9],,g')
+	local Ti=$(echo $vals | grep -o 'T=[0-9]*'       | sed -e 's,[^0-9],,g')
+	local Bi=$(echo $vals | grep -o 'B=[0-9]*'       | sed -e 's,[^0-9],,g')
+	local di=$(echo $vals | grep -o 'd=[0-9.\-]*'    | sed -e 's,[^0-9],,g')
 
         echo "t=[$t], ti=[$ti]"
         echo "P=[$P], Pi=[$Pi]"
