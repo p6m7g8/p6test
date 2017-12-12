@@ -13,11 +13,11 @@ p6_test_harness_test_run() {
     local file="$1"
 
     local t=0
+    local s=0
     local S=0
     local T=0
     local B=0
     local F=0
-    local s=0
 
     ## Setup env
     local test_env=$(env | egrep "^(EDITOR|DISPLAY|HOME|PWD|SHELL|SHLVL|TMPDIR|USER|TERM|PATH|P6_TEST_)=")
@@ -107,6 +107,7 @@ p6_test_harness_tests_run() {
     local file
     for file in $(cd $dir ; ls -1); do
 	local vals=$(p6_test_harness_test_run "$dir/$file")
+set -x
 	local ti=$(echo $vals | grep -o 't=[0-9]*'       | sed -e 's,[^0-9],,g')
 	local pi=$(echo $vals | grep -o 'p=[0-9\.]*'     | sed -e 's,[^0-9],,g')
 	local Pi=$(echo $vals | grep -o 'P=[0-9]*'       | sed -e 's,[^0-9],,g')
@@ -129,7 +130,7 @@ p6_test_harness_tests_run() {
 	T=$(($T+$Ti))
 	p=$(echo "$p+$pi" | bc -q)
 	d=$(echo "$d+$di" | bc -q)
-
+set +x
 	p6_test_harness___results "$dir/$file" "$di" "$pi" "$Pi" "$ti" "$Bi" "$Ti" "$Si" >&2
 	f=$(($f+1))
     done
