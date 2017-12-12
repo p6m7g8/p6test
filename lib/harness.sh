@@ -35,7 +35,7 @@ p6_test_harness_test_run() {
     time env -i P6_TEST_COLOR_OFF=1 $test_env ./$file
 
     # Restore
-    Texec 1>&3 2>&4
+    exec 1>&3 2>&4
 
     local IFS='
 '
