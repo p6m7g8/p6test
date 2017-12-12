@@ -65,9 +65,9 @@ p6_test_harness_test_run() {
 	esac
     done
 
-    if [ $F -eq 0 ]; then
-	rm -f $log_file
-    fi
+#    if [ $F -eq 0 ]; then
+#	rm -f $log_file
+#    fi
 
     local r=$(($S+$T+$F+$s))
     local P=$(($S+$s+$T))
@@ -82,6 +82,7 @@ p6_test_harness_test_run() {
     local d=$(awk '/real/ { print $2 }' $log_file_times | sed -e 's,^0m,,' -e 's/s//')
 
     echo "t=$t, s=$s, S=$S, T=$T, B=$B, F=$F, r=$r, p=$p, P=$P, d=$d"
+    echo "t=$t, s=$s, S=$S, T=$T, B=$B, F=$F, r=$r, p=$p, P=$P, d=$d" >&2
 }
 
 p6_test_harness_tests_run() {
