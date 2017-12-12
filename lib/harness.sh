@@ -115,6 +115,13 @@ p6_test_harness_tests_run() {
 	local Bi=$(echo $vals | grep -o 'B=[0-9]*'       | sed -e 's,B=,,')
 	local di=$(echo $vals | grep -o 'd=[0-9.\-]*'    | sed -e 's,d=,,')
 
+        echo "t=[$t], ti=[$ti]"
+        echo "P=[$P], Pi=[$Pi]"
+        echo "B=[$B], Bi=[$Bi]"
+        echo "S=[$S], Si=[$Si]"
+        echo "T=[$T], Ti=[$Ti]"
+        echo "p=[$p], pi=[$pi]"
+        echo "d=[$d], di=[$di]"
 	t=$(($t+$ti))
 	P=$(($P+$Pi))
 	B=$(($B+$Bi))
