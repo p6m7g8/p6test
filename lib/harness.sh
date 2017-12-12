@@ -84,8 +84,8 @@ p6_test_harness_test_run() {
       d=0
     fi
 
-    echo "t=$t, s=$s, S=$S, T=$T, B=$B, F=$F, r=$r, p=$p, P=$P, d=$d"
-    echo "t=$t, s=$s, S=$S, T=$T, B=$B, F=$F, r=$r, p=$p, P=$P, d=$d" >&2
+    echo "t=$t s=$s S=$S T=$T B=$B F=$F r=$r p=$p P=$P d=$d"
+    echo "t=$t s=$s S=$S T=$T B=$B F=$F r=$r p=$p P=$P d=$d" >&2
 }
 
 p6_test_harness_tests_run() {
