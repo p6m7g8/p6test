@@ -108,7 +108,7 @@ p6_test_harness_tests_run() {
 	local vals="$(p6_test_harness_test_run "$dir/$file")"
 
 	local ti=$(echo $vals | sed -e 's,.*Tt=,,' -e 's, .*,,')
-        local pi=$(echo $vals | sed -e 's,.*Tp=,,' -e 's, .*,,')
+	local pi=$(echo $vals | sed -e 's,.*Tp=,,' -e 's, .*,,')
 	local Pi=$(echo $vals | sed -e 's,.*TP=,,' -e 's, .*,,')
 	local Si=$(echo $vals | sed -e 's,.*TS=,,' -e 's, .*,,')
 	local Ti=$(echo $vals | sed -e 's,.*TT=,,' -e 's, .*,,')
@@ -129,15 +129,19 @@ p6_test_harness_tests_run() {
 
     local result
     local msg
+    local rc
     if [ x"$P" != x"$t" ]; then
 	msg=$(egrep '^not ok|^#' /tmp/p6/test/tests/*.txt)
 	result=FAIL
+	rc=2
     else
 	msg=ok
 	if [ $B -gt 0 ]; then
 	    result=PROVISIONAL
+	    rc=1
 	else
 	    result=PASS
+	    rc=0
 	fi
     fi
 
@@ -145,6 +149,7 @@ p6_test_harness_tests_run() {
     echo "Files=$f, Tests=$P/$t, Todo=$T, Fixed=$B, Skipped=$S, $d wallclock secs"
     echo "Result: $result"
     rm -rf /tmp/p6/test
+    return $rc
 }
 
 p6_test_harness___results() {
