@@ -130,7 +130,7 @@ p6_test_harness_tests_run() {
 
 #	local ti=$(echo $vals | grep -o 'Tt=[0-9]*'       | sed -e 's,[^0-9],,g')
 #	local pi=$(echo $vals | grep -o 'Tp=[0-9\.]*'     | sed -e 's,[^0-9],,g')
-	local Pi=$(echo $vals | grep -o 'TP=[0-9]*'       | sed -e 's,[^0-9],,g')
+	local Pi=$(echo $vals | sed -e 's,.*TP=,,' -e 's, .*,,')
 #	local Si=$(echo $vals | grep -o 'TS=[0-9]*'       | sed -e 's,[^0-9],,g')
 #	local Ti=$(echo $vals | grep -o 'TT=[0-9]*'       | sed -e 's,[^0-9],,g')
 #	local Bi=$(echo $vals | grep -o 'TB=[0-9]*'       | sed -e 's,[^0-9],,g')
