@@ -61,7 +61,9 @@ p6_test__cleanup() {
     else
 	echo 0
     fi
-    rm -f $P6_TEST_BAIL_FILE
+    if [ -n "$P6_TEST_BAIL_FILE" ]; then
+      rm -f $P6_TEST_BAIL_FILE
+    fi
 }
 
 p6_test__i() {
