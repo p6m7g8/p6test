@@ -1,4 +1,3 @@
-##############################################################################
 #
 # Runing something
 #
@@ -13,7 +12,16 @@
 # /tmp/p6test/t/<rand>/rv
 #
 # XXX: fixtures and stdin
-###############################################################################
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_run()
+#
+#
+#
+#>
+######################################################################
 p6_test_run() {
 
     local dir=$(p6_test_dir)
@@ -30,31 +38,72 @@ p6_test_run() {
     echo $rc > $rv
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_run_stdout()
+#
+#
+#
+#>
+######################################################################
 p6_test_run_stdout() {
 
     local dir=$(p6_test_dir)
     cat $dir/stdout
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_run_stderr()
+#
+#
+#
+#>
+######################################################################
 p6_test_run_stderr() {
 
     local dir=$(p6_test_dir)
     cat $dir/stderr
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_run_rc()
+#
+#
+#
+#>
+######################################################################
 p6_test_run_rc() {
 
     local dir=$(p6_test_dir)
     cat $dir/rv
 }
 
-##############################################################################
 #
 # Assertions.
 #
 #
 #
-###############################################################################
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_run_ok(description, rv)
+#
+# Arg(s):
+#    description - 
+#    rv - 
+#
+#
+#>
+######################################################################
 p6_test_assert_run_ok() {
     local description="$1"
     local rv="${2:-0}"
@@ -63,6 +112,19 @@ p6_test_assert_run_ok() {
     p6_test_assert_run_no_output "$description"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_run_rc(description, rv)
+#
+# Arg(s):
+#    description - 
+#    rv - 
+#
+#
+#>
+######################################################################
 p6_test_assert_run_rc() {
     local description="$1"
     local rv="$2"
@@ -75,6 +137,19 @@ p6_test_assert_run_rc() {
     fi
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_run_no_output(description, reason)
+#
+# Arg(s):
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_assert_run_no_output() {
     local description="$1"
     local reason="$2"
@@ -83,6 +158,19 @@ p6_test_assert_run_no_output() {
     p6_test_assert_run_no_stderr "$description" "$reason"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_run_no_stdout(description, reason)
+#
+# Arg(s):
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_assert_run_no_stdout() {
     local description="$1"
     local reason="$2"
@@ -90,6 +178,19 @@ p6_test_assert_run_no_stdout() {
     p6_test_assert_blank "$(p6_test_run_stdout)" "$description: no stdout"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_run_no_stderr(description, reason)
+#
+# Arg(s):
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_assert_run_no_stderr() {
     local description="$1"
     local reason="$2"
@@ -97,6 +198,19 @@ p6_test_assert_run_no_stderr() {
     p6_test_assert_blank "$(p6_test_run_stderr)" "$description: no stderr"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_run_not_ok(description, reason)
+#
+# Arg(s):
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_assert_run_not_ok() {
     local description="$1"
     local reason="$2"
@@ -107,6 +221,21 @@ p6_test_assert_run_not_ok() {
     p6_test_assert_not_eq "$rc" "0" "$description" "$reason"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_eq(val, const, description, reason)
+#
+# Arg(s):
+#    val - 
+#    const - 
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_assert_eq() {
     local val="$1"
     local const="$2"
@@ -129,6 +258,21 @@ p6_test_assert_eq() {
     return $rv
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_not_eq(val, const, description, reason)
+#
+# Arg(s):
+#    val - 
+#    const - 
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_assert_not_eq() {
     local val="$1"
     local const="$2"
@@ -151,6 +295,21 @@ p6_test_assert_not_eq() {
     return $rv
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_contains(val, const, description, reason)
+#
+# Arg(s):
+#    val - 
+#    const - 
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_assert_contains() {
     local val="$1"
     local const="$2"
@@ -172,6 +331,21 @@ p6_test_assert_contains() {
     return $rv
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_len(val, const, description, reason)
+#
+# Arg(s):
+#    val - 
+#    const - 
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_assert_len() {
     local val="$1"
     local const="$2"
@@ -184,6 +358,21 @@ p6_test_assert_len() {
     p6_test_assert_eq "$len" "$const" "$description" "$reason"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_not_contains(val, const, description, reason)
+#
+# Arg(s):
+#    val - 
+#    const - 
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_assert_not_contains() {
     local val="$1"
     local const="$2"
@@ -207,6 +396,20 @@ p6_test_assert_not_contains() {
 
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_blank(val, description, reason)
+#
+# Arg(s):
+#    val - 
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_assert_blank() {
     local val="$1"
     local description="$2"
@@ -225,6 +428,20 @@ p6_test_assert_blank() {
     return $rv
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_not_blank(val, description, reason)
+#
+# Arg(s):
+#    val - 
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_assert_not_blank() {
     local val="$1"
     local description="$2"
@@ -243,6 +460,20 @@ p6_test_assert_not_blank() {
     return $rv
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_dir_exists(val, description, reason)
+#
+# Arg(s):
+#    val - 
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_assert_dir_exists() {
     local val="$1"
     local description="$2"
@@ -261,6 +492,20 @@ p6_test_assert_dir_exists() {
     return $rv
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_assert_dir_not_exists(val, description, reason)
+#
+# Arg(s):
+#    val - 
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_assert_dir_not_exists() {
     local val="$1"
     local description="$2"

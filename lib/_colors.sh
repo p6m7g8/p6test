@@ -1,51 +1,161 @@
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_colorize_plan(line)
+#
+# Arg(s):
+#    line - 
+#
+#
+#>
+######################################################################
 p6_test_colorize_plan() {
     local line="$1"
 
     p6_test_colorize__say "blue" "black" "$line"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_colorize_not_ok(line)
+#
+# Arg(s):
+#    line - 
+#
+#
+#>
+######################################################################
 p6_test_colorize_not_ok() {
     local line="$1"
 
     p6_test_colorize__say "red" "black" "$line"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_colorize_ok(line)
+#
+# Arg(s):
+#    line - 
+#
+#
+#>
+######################################################################
 p6_test_colorize_ok() {
     local line="$1"
 
     p6_test_colorize__say "green" "black" "$line"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_colorize_skip(line)
+#
+# Arg(s):
+#    line - 
+#
+#
+#>
+######################################################################
 p6_test_colorize_skip() {
     local line="$1"
 
     p6_test_colorize__say "magenta" "black" "$line"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_colorize_todo(line)
+#
+# Arg(s):
+#    line - 
+#
+#
+#>
+######################################################################
 p6_test_colorize_todo() {
     local line="$1"
 
     p6_test_colorize__say "yellow" "black" "$line"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_colorize_diagnostic(line)
+#
+# Arg(s):
+#    line - 
+#
+#
+#>
+######################################################################
 p6_test_colorize_diagnostic() {
     local line="$1"
 
     p6_test_colorize__say "white" "black" "$line"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_colorize_block(line)
+#
+# Arg(s):
+#    line - 
+#
+#
+#>
+######################################################################
 p6_test_colorize_block() {
     local line="$1"
 
     p6_test_colorize__say "black" "white" "$line"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_colorize_bail(line)
+#
+# Arg(s):
+#    line - 
+#
+#
+#>
+######################################################################
 p6_test_colorize_bail() {
     local line="$1"
 
     p6_test_colorize__say "cyan" "black" "$line"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_colorize__say(color_fg, color_bg, msg)
+#
+# Arg(s):
+#    color_fg - 
+#    color_bg - 
+#    msg - 
+#
+#
+#>
+######################################################################
 p6_test_colorize__say() {
     local color_fg="$1"
     local color_bg="$2"
@@ -65,6 +175,18 @@ p6_test_colorize__say() {
     echo
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_colorize__color_to_code(color)
+#
+# Arg(s):
+#    color - 
+#
+#
+#>
+######################################################################
 p6_test_colorize__color_to_code() {
     local color="$1"
 

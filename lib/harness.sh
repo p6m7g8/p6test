@@ -9,6 +9,16 @@
 # p - percentage of tests passing (P/t)*100
 # d - time delta
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_harness_test_run()
+#
+#
+#
+#>
+######################################################################
 p6_test_harness_test_run() {
     local file="$1"
 
@@ -87,6 +97,18 @@ p6_test_harness_test_run() {
     echo "Tt=$Tt Ts=$Ts TS=$TS TT=$TT TB=$TB TF=$TF Tr=$Tr Tp=$Tp TP=$TP Td=$Td"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_harness_tests_run(dir)
+#
+# Arg(s):
+#    dir - 
+#
+#
+#>
+######################################################################
 p6_test_harness_tests_run() {
     local dir="$1"
 
@@ -152,6 +174,25 @@ p6_test_harness_tests_run() {
     return $rc
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_harness___results(name, duration, prcnt_passed, passed, total, bonus, todo, skipped)
+#
+# Arg(s):
+#    name - 
+#    duration - 
+#    prcnt_passed - 
+#    passed - 
+#    total - 
+#    bonus - 
+#    todo - 
+#    skipped - 
+#
+#
+#>
+######################################################################
 p6_test_harness___results() {
     local name="$1"
     local duration="$2"
@@ -199,6 +240,19 @@ p6_test_harness___results() {
     p6_test_colorize__say "$color" "black" "$line"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_harness__zero_lpad(len, str)
+#
+# Arg(s):
+#    len - 
+#    str - 
+#
+#
+#>
+######################################################################
 p6_test_harness__zero_lpad() {
     local len="$1"
     local str="$2"

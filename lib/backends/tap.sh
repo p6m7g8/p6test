@@ -1,9 +1,32 @@
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_tap_plan()
+#
+#
+#
+#>
+######################################################################
 p6_test_tap_plan() {
     local n="$1"
 
     p6_test_colorize_plan "1..$n"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_tap_ok(description, reason)
+#
+# Arg(s):
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_tap_ok() {
     local description="$1"
     local reason="$2"
@@ -12,6 +35,19 @@ p6_test_tap_ok() {
     p6_test_tap__line "ok" "$i" "$description" "" "$reason"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_tap_not_ok(description, reason)
+#
+# Arg(s):
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_tap_not_ok() {
     local description="$1"
     local reason="$2"
@@ -20,12 +56,37 @@ p6_test_tap_not_ok() {
     p6_test_tap__line "not ok" "$i" "$description" "" "$reason"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_tap_block(block)
+#
+# Arg(s):
+#    block - 
+#
+#
+#>
+######################################################################
 p6_test_tap_block() {
     local block="$1"
 
     p6_test_colorize_block "# $block"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_tap_skip(description, reason)
+#
+# Arg(s):
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_tap_skip() {
     local description="$1"
     local reason="$2"
@@ -34,6 +95,19 @@ p6_test_tap_skip() {
     p6_test_tap__line "ok" "$i" "$description" "SKIP" "$reason"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_tap_todo_planned(description, reason)
+#
+# Arg(s):
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_tap_todo_planned() {
     local description="$1"
     local reason="$2"
@@ -42,6 +116,19 @@ p6_test_tap_todo_planned() {
     p6_test_tap__line "not ok" "$i" "$description" "TODO" "$reason"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_tap_todo_bonus(description, reason)
+#
+# Arg(s):
+#    description - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_tap_todo_bonus() {
     local description="$1"
     local reason="$2"
@@ -50,22 +137,71 @@ p6_test_tap_todo_bonus() {
     p6_test_tap__line "ok" "$i" "$description" "TODO" "$reason"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_tap_diagnostic(msg)
+#
+# Arg(s):
+#    msg - 
+#
+#
+#>
+######################################################################
 p6_test_tap_diagnostic() {
     local msg="$1"
 
     p6_test_colorize_diagnostic "# $msg"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_tap_bail_out(reason)
+#
+# Arg(s):
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_tap_bail_out() {
     local reason="$1"
 
     p6_test_colorize_bail "Bail out! $reason"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_tap_shell()
+#
+#
+#
+#>
+######################################################################
 p6_test_tap_shell() {
     true
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_tap__line(outcome, description, directive, reason)
+#
+# Arg(s):
+#    outcome - 
+#    description - 
+#    directive - 
+#    reason - 
+#
+#
+#>
+######################################################################
 p6_test_tap__line() {
     local outcome="$1"
     local i="$2"
@@ -87,6 +223,18 @@ p6_test_tap__line() {
     p6_test_tap__line_colorize "$line"
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_tap__line_colorize(line)
+#
+# Arg(s):
+#    line - 
+#
+#
+#>
+######################################################################
 p6_test_tap__line_colorize() {
     local line="$1"
 
@@ -99,6 +247,16 @@ p6_test_tap__line_colorize() {
     esac
 }
 
+######################################################################
+#<
+#
+# Function:
+#      = p6_test_tap__i()
+#
+#
+#
+#>
+######################################################################
 p6_test_tap__i() {
 
     p6_test__i
