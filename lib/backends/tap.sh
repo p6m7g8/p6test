@@ -2,9 +2,7 @@
 #<
 #
 # Function:
-#      = p6_test_tap_plan()
-#
-#
+#	p6_test_tap_plan()
 #
 #>
 ######################################################################
@@ -18,12 +16,11 @@ p6_test_tap_plan() {
 #<
 #
 # Function:
-#      = p6_test_tap_ok(description, reason)
+#	p6_test_tap_ok(description, reason)
 #
-# Arg(s):
-#    description - 
-#    reason - 
-#
+#  Args:
+#	description - 
+#	reason - 
 #
 #>
 ######################################################################
@@ -39,12 +36,11 @@ p6_test_tap_ok() {
 #<
 #
 # Function:
-#      = p6_test_tap_not_ok(description, reason)
+#	p6_test_tap_not_ok(description, reason)
 #
-# Arg(s):
-#    description - 
-#    reason - 
-#
+#  Args:
+#	description - 
+#	reason - 
 #
 #>
 ######################################################################
@@ -60,11 +56,10 @@ p6_test_tap_not_ok() {
 #<
 #
 # Function:
-#      = p6_test_tap_block(block)
+#	p6_test_tap_block(block)
 #
-# Arg(s):
-#    block - 
-#
+#  Args:
+#	block - 
 #
 #>
 ######################################################################
@@ -78,12 +73,11 @@ p6_test_tap_block() {
 #<
 #
 # Function:
-#      = p6_test_tap_skip(description, reason)
+#	p6_test_tap_skip(description, reason)
 #
-# Arg(s):
-#    description - 
-#    reason - 
-#
+#  Args:
+#	description - 
+#	reason - 
 #
 #>
 ######################################################################
@@ -99,12 +93,11 @@ p6_test_tap_skip() {
 #<
 #
 # Function:
-#      = p6_test_tap_todo_planned(description, reason)
+#	p6_test_tap_todo_planned(description, reason)
 #
-# Arg(s):
-#    description - 
-#    reason - 
-#
+#  Args:
+#	description - 
+#	reason - 
 #
 #>
 ######################################################################
@@ -120,12 +113,11 @@ p6_test_tap_todo_planned() {
 #<
 #
 # Function:
-#      = p6_test_tap_todo_bonus(description, reason)
+#	p6_test_tap_todo_bonus(description, reason)
 #
-# Arg(s):
-#    description - 
-#    reason - 
-#
+#  Args:
+#	description - 
+#	reason - 
 #
 #>
 ######################################################################
@@ -141,11 +133,10 @@ p6_test_tap_todo_bonus() {
 #<
 #
 # Function:
-#      = p6_test_tap_diagnostic(msg)
+#	p6_test_tap_diagnostic(msg)
 #
-# Arg(s):
-#    msg - 
-#
+#  Args:
+#	msg - 
 #
 #>
 ######################################################################
@@ -159,11 +150,10 @@ p6_test_tap_diagnostic() {
 #<
 #
 # Function:
-#      = p6_test_tap_bail_out(reason)
+#	p6_test_tap_bail_out(reason)
 #
-# Arg(s):
-#    reason - 
-#
+#  Args:
+#	reason - 
 #
 #>
 ######################################################################
@@ -177,9 +167,7 @@ p6_test_tap_bail_out() {
 #<
 #
 # Function:
-#      = p6_test_tap_shell()
-#
-#
+#	p6_test_tap_shell()
 #
 #>
 ######################################################################
@@ -191,14 +179,13 @@ p6_test_tap_shell() {
 #<
 #
 # Function:
-#      = p6_test_tap__line(outcome, description, directive, reason)
+#	p6_test_tap__line(outcome, description, directive, reason)
 #
-# Arg(s):
-#    outcome - 
-#    description - 
-#    directive - 
-#    reason - 
-#
+#  Args:
+#	outcome - 
+#	description - 
+#	directive - 
+#	reason - 
 #
 #>
 ######################################################################
@@ -227,11 +214,10 @@ p6_test_tap__line() {
 #<
 #
 # Function:
-#      = p6_test_tap__line_colorize(line)
+#	p6_test_tap__line_colorize(line)
 #
-# Arg(s):
-#    line - 
-#
+#  Args:
+#	line - 
 #
 #>
 ######################################################################
@@ -251,9 +237,7 @@ p6_test_tap__line_colorize() {
 #<
 #
 # Function:
-#      = p6_test_tap__i()
-#
-#
+#	p6_test_tap__i()
 #
 #>
 ######################################################################

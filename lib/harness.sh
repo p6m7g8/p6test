@@ -13,9 +13,7 @@
 #<
 #
 # Function:
-#      = p6_test_harness_test_run()
-#
-#
+#	p6_test_harness_test_run()
 #
 #>
 ######################################################################
@@ -101,11 +99,10 @@ p6_test_harness_test_run() {
 #<
 #
 # Function:
-#      = p6_test_harness_tests_run(dir)
+#	p6_test_harness_tests_run(dir)
 #
-# Arg(s):
-#    dir - 
-#
+#  Args:
+#	dir - 
 #
 #>
 ######################################################################
@@ -178,18 +175,17 @@ p6_test_harness_tests_run() {
 #<
 #
 # Function:
-#      = p6_test_harness___results(name, duration, prcnt_passed, passed, total, bonus, todo, skipped)
+#	p6_test_harness___results(name, duration, prcnt_passed, passed, total, bonus, todo, skipped)
 #
-# Arg(s):
-#    name - 
-#    duration - 
-#    prcnt_passed - 
-#    passed - 
-#    total - 
-#    bonus - 
-#    todo - 
-#    skipped - 
-#
+#  Args:
+#	name - 
+#	duration - 
+#	prcnt_passed - 
+#	passed - 
+#	total - 
+#	bonus - 
+#	todo - 
+#	skipped - 
 #
 #>
 ######################################################################
@@ -244,12 +240,11 @@ p6_test_harness___results() {
 #<
 #
 # Function:
-#      = p6_test_harness__zero_lpad(len, str)
+#	p6_test_harness__zero_lpad(len, str)
 #
-# Arg(s):
-#    len - 
-#    str - 
-#
+#  Args:
+#	len - 
+#	str - 
 #
 #>
 ######################################################################

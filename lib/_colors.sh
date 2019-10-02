@@ -2,11 +2,10 @@
 #<
 #
 # Function:
-#      = p6_test_colorize_plan(line)
+#	p6_test_colorize_plan(line)
 #
-# Arg(s):
-#    line - 
-#
+#  Args:
+#	line - 
 #
 #>
 ######################################################################
@@ -20,11 +19,10 @@ p6_test_colorize_plan() {
 #<
 #
 # Function:
-#      = p6_test_colorize_not_ok(line)
+#	p6_test_colorize_not_ok(line)
 #
-# Arg(s):
-#    line - 
-#
+#  Args:
+#	line - 
 #
 #>
 ######################################################################
@@ -38,11 +36,10 @@ p6_test_colorize_not_ok() {
 #<
 #
 # Function:
-#      = p6_test_colorize_ok(line)
+#	p6_test_colorize_ok(line)
 #
-# Arg(s):
-#    line - 
-#
+#  Args:
+#	line - 
 #
 #>
 ######################################################################
@@ -56,11 +53,10 @@ p6_test_colorize_ok() {
 #<
 #
 # Function:
-#      = p6_test_colorize_skip(line)
+#	p6_test_colorize_skip(line)
 #
-# Arg(s):
-#    line - 
-#
+#  Args:
+#	line - 
 #
 #>
 ######################################################################
@@ -74,11 +70,10 @@ p6_test_colorize_skip() {
 #<
 #
 # Function:
-#      = p6_test_colorize_todo(line)
+#	p6_test_colorize_todo(line)
 #
-# Arg(s):
-#    line - 
-#
+#  Args:
+#	line - 
 #
 #>
 ######################################################################
@@ -92,11 +87,10 @@ p6_test_colorize_todo() {
 #<
 #
 # Function:
-#      = p6_test_colorize_diagnostic(line)
+#	p6_test_colorize_diagnostic(line)
 #
-# Arg(s):
-#    line - 
-#
+#  Args:
+#	line - 
 #
 #>
 ######################################################################
@@ -110,11 +104,10 @@ p6_test_colorize_diagnostic() {
 #<
 #
 # Function:
-#      = p6_test_colorize_block(line)
+#	p6_test_colorize_block(line)
 #
-# Arg(s):
-#    line - 
-#
+#  Args:
+#	line - 
 #
 #>
 ######################################################################
@@ -128,11 +121,10 @@ p6_test_colorize_block() {
 #<
 #
 # Function:
-#      = p6_test_colorize_bail(line)
+#	p6_test_colorize_bail(line)
 #
-# Arg(s):
-#    line - 
-#
+#  Args:
+#	line - 
 #
 #>
 ######################################################################
@@ -146,13 +138,12 @@ p6_test_colorize_bail() {
 #<
 #
 # Function:
-#      = p6_test_colorize__say(color_fg, color_bg, msg)
+#	p6_test_colorize__say(color_fg, color_bg, msg)
 #
-# Arg(s):
-#    color_fg - 
-#    color_bg - 
-#    msg - 
-#
+#  Args:
+#	color_fg - 
+#	color_bg - 
+#	msg - 
 #
 #>
 ######################################################################
@@ -179,11 +170,10 @@ p6_test_colorize__say() {
 #<
 #
 # Function:
-#      = p6_test_colorize__color_to_code(color)
+#	p6_test_colorize__color_to_code(color)
 #
-# Arg(s):
-#    color - 
-#
+#  Args:
+#	color - 
 #
 #>
 ######################################################################

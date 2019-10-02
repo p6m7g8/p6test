@@ -2,12 +2,11 @@
 #<
 #
 # Function:
-#      = p6_test_bench(times, thing)
+#	p6_test_bench(times, thing)
 #
-# Arg(s):
-#    times - 
-#    thing - 
-#
+#  Args:
+#	times - 
+#	thing - 
 #
 #>
 ######################################################################

@@ -52,9 +52,7 @@
 #<
 #
 # Function:
-#      = p6_test_setup()
-#
-#
+#	p6_test_setup()
 #
 #>
 ######################################################################
@@ -69,11 +67,10 @@ p6_test_setup() {
 #<
 #
 # Function:
-#      = p6_test_start(block)
+#	p6_test_start(block)
 #
-# Arg(s):
-#    block - 
-#
+#  Args:
+#	block - 
 #
 #>
 ######################################################################
@@ -88,12 +85,11 @@ p6_test_start() {
 #<
 #
 # Function:
-#      = p6_test_skip(description, reason)
+#	p6_test_skip(description, reason)
 #
-# Arg(s):
-#    description - 
-#    reason - 
-#
+#  Args:
+#	description - 
+#	reason - 
 #
 #>
 ######################################################################
@@ -109,11 +105,10 @@ p6_test_skip() {
 #<
 #
 # Function:
-#      = p6_test_ok(description)
+#	p6_test_ok(description)
 #
-# Arg(s):
-#    description - 
-#
+#  Args:
+#	description - 
 #
 #>
 ######################################################################
@@ -127,11 +122,10 @@ p6_test_ok() {
 #<
 #
 # Function:
-#      = p6_test_not_ok(description)
+#	p6_test_not_ok(description)
 #
-# Arg(s):
-#    description - 
-#
+#  Args:
+#	description - 
 #
 #>
 ######################################################################
@@ -145,14 +139,13 @@ p6_test_not_ok() {
 #<
 #
 # Function:
-#      = p6_test_todo(val, const, description, reason)
+#	p6_test_todo(val, const, description, reason)
 #
-# Arg(s):
-#    val - 
-#    const - 
-#    description - 
-#    reason - 
-#
+#  Args:
+#	val - 
+#	const - 
+#	description - 
+#	reason - 
 #
 #>
 ######################################################################
@@ -174,11 +167,10 @@ p6_test_todo() {
 #<
 #
 # Function:
-#      = p6_test_diagnostic(msg)
+#	p6_test_diagnostic(msg)
 #
-# Arg(s):
-#    msg - 
-#
+#  Args:
+#	msg - 
 #
 #>
 ######################################################################
@@ -192,11 +184,10 @@ p6_test_diagnostic() {
 #<
 #
 # Function:
-#      = p6_test_bail(reason)
+#	p6_test_bail(reason)
 #
-# Arg(s):
-#    reason - 
-#
+#  Args:
+#	reason - 
 #
 #>
 ######################################################################
@@ -211,9 +202,7 @@ p6_test_bail() {
 #<
 #
 # Function:
-#      = p6_test_finish()
-#
-#
+#	p6_test_finish()
 #
 #>
 ######################################################################
@@ -229,9 +218,7 @@ p6_test_finish() {
 #<
 #
 # Function:
-#      = p6_test_teardown()
-#
-#
+#	p6_test_teardown()
 #
 #>
 ######################################################################
