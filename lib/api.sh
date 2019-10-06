@@ -208,8 +208,7 @@ p6_test_bail() {
 ######################################################################
 p6_test_finish() {
 
-    local bail=$(p6_test__cleanup)
-    if [ $bail -eq 1 ]; then
+    if p6_test__cleanup; then
 	exit 1
     fi
 }

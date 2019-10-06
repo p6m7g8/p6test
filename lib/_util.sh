@@ -5,19 +5,19 @@
 #	p6_test_dir(path)
 #
 #  Args:
-#	path - 
+#	path -
 #
 #>
 ######################################################################
 p6_test_dir() {
-    local path="$1"
+    local test_path="$1"
 
     local dir_name
-    if [ -z "$path" ]; then
+    if [ -z "$test_path" ]; then
 	dir_name=$P6_TEST_DIR_ROOT
     else
 	local rand=$(cat /dev/urandom | env LC_CTYPE=C tr -dc a-zA-Z0-9 | head -c 5)
-	dir_name="$path/$rand"
+	dir_name="$test_path/$rand"
 
 	mkdir -p $dir_name
     fi
@@ -108,12 +108,11 @@ p6_test__cleanup() {
     rm -rf $P6_TEST_DIR_ROOT
 
     if [ -e $P6_TEST_BAIL_FILE ]; then
-	echo 1
+	rm -f $P6_TEST_BAIL_FILE
+	return 0
     else
-	echo 0
-    fi
-    if [ -n "$P6_TEST_BAIL_FILE" ]; then
-      rm -f $P6_TEST_BAIL_FILE
+	rm -f $P6_TEST_BAIL_FILE
+	return 1
     fi
 }
 
