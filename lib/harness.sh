@@ -39,7 +39,6 @@ p6_test_harness_test_run() {
     exec 3>&1 4>&2 >$log_file 2>$log_file_times
 
     ## Time and run
-    chmod 755 $file
     time env -i P6_TEST_COLOR_OFF=1 $test_env ./$file
 
     # Restore
