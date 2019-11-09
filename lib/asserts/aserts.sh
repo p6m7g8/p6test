@@ -28,7 +28,7 @@ p6_test_run() {
     local dir=$(p6_test_dir)
 
     local cli=$dir/cli
-    local stdin=$dir/in
+#    local stdin=$dir/in
     local stdout=$dir/stdout
     local stderr=$dir/stderr
     local rv=$dir/rv
