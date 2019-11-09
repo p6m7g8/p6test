@@ -1,17 +1,20 @@
 #
 # Runing something
 #
-# /tmp/p6test
-# /tmp/p6test/i
-# /tmp/p6test/n
-# /tmp/p6test/t/
-# /tmp/p6test/t/<rand>/
-# /tmp/p6test/t/<rand>/stdin
-# /tmp/p6test/t/<rand>/stdout
-# /tmp/p6test/t/<rand>/stderr
-# /tmp/p6test/t/<rand>/rv
+# /tmp/p6/test
+# /tmp/p6/test/[bail]
+# /tmp/p6/test/i
+# /tmp/p6/test/n
+# /tmp/p6/test/t/
+# /tmp/p6/test/t/<rand>/
+# /tmp/p6/test/t/<rand>/fixtures/
+# /tmp/p6/test/t/<rand>/cli
+# # /tmp/p6/test/t/<rand>/in
+# /tmp/p6/test/t/<rand>/stdout
+# /tmp/p6/test/t/<rand>/stderr
+# /tmp/p6/test/t/<rand>/rv
 #
-# XXX: fixtures and stdin
+# XXX: stdin
 ######################################################################
 #<
 #
