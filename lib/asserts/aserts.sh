@@ -101,9 +101,22 @@ p6_test_run_rc() {
 p6_test_assert_run_ok() {
     local description="$1"
     local rv="${2:-0}"
+    local stdout="${3:-}"
+    local stderr="${4:-}"
 
-    p6_test_assert_run_rc "$description" "$rv"
-    p6_test_assert_run_no_output "$description"
+    p6_test_assert_run_rc "$description: return code success" "$rv"
+
+    if [ -n "$stdout" ]; then
+	p6_test_assert_eq "$(p6_test_run_stdout)" "$stdout" "$description: custom stdout matches"
+    else
+	p6_test_assert_run_no_stdout "$description"
+    fi
+
+    if [ -n "$stderr" ]; then
+	p6_test_assert_eq "$(p6_test_run_stderr)" "$stderr" "$description: custom stderr matches"
+    else
+	p6_test_assert_run_no_stderr "$description"
+    fi
 }
 
 ######################################################################
