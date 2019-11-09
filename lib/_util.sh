@@ -2,10 +2,10 @@
 #<
 #
 # Function:
-#	p6_test_dir(path)
+#	p6_test_dir(test_path)
 #
 #  Args:
-#	path -
+#	test_path - 
 #
 #>
 ######################################################################
@@ -52,7 +52,10 @@ p6_test__init() {
 #<
 #
 # Function:
-#	p6_test__initialize()
+#	p6_test__initialize(n)
+#
+#  Args:
+#	n - 
 #
 #>
 ######################################################################

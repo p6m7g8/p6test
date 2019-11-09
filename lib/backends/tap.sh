@@ -2,7 +2,10 @@
 #<
 #
 # Function:
-#	p6_test_tap_plan()
+#	p6_test_tap_plan(n)
+#
+#  Args:
+#	n - 
 #
 #>
 ######################################################################
@@ -179,10 +182,11 @@ p6_test_tap_shell() {
 #<
 #
 # Function:
-#	p6_test_tap__line(outcome, description, directive, reason)
+#	p6_test_tap__line(outcome, i, description, directive, reason)
 #
 #  Args:
 #	outcome - 
+#	i - 
 #	description - 
 #	directive - 
 #	reason - 

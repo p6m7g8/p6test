@@ -90,11 +90,13 @@ p6_test_run_rc() {
 #<
 #
 # Function:
-#	p6_test_assert_run_ok(description, [rv=0])
+#	p6_test_assert_run_ok(description, [rv=0], [stdout=], [stderr=])
 #
 #  Args:
 #	description - 
 #	OPTIONAL rv -  [0]
+#	OPTIONAL stdout -  []
+#	OPTIONAL stderr -  []
 #
 #>
 ######################################################################
