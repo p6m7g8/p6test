@@ -13,7 +13,7 @@
 #
 # p6_test_start "directives 1"
 # (
-#	p6_test_skip "$code" "description" "bar"
+#	p6_test_skip "description" "bar" "$code"
 #	echo "should not got here"
 # )
 # p6_test_finish
