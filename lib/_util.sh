@@ -78,6 +78,11 @@ p6_test__initialize() {
 p6_test__prep() {
 
     P6_TEST_DIR_ROOT=$(p6_test_dir "$P6_TEST_DIR")
+
+    if [ -d $P6_TEST_DIR_ORIG/fixtures ]; then
+	cp -R $P6_TEST_DIR_ORIG/fixtures $P6_TEST_DIR_ROOT/
+    fi
+
     cd $P6_TEST_DIR_ROOT
 }
 
