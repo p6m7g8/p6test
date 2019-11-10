@@ -1,80 +1,70 @@
-# p6m7g8/p6test
+### _bootstrap.sh:
+- p6_p6test_bootstrap([dir=$P6_DFZ_SRC_P6M7G8_DIR/p6test])
 
-A POSIX.2 compliant BSD sh shell tester framework
+### _colors.sh:
+- p6_test_colorize_bail(line)
+- p6_test_colorize_block(line)
+- p6_test_colorize_diagnostic(line)
+- p6_test_colorize_not_ok(line)
+- p6_test_colorize_ok(line)
+- p6_test_colorize_plan(line)
+- p6_test_colorize_skip(line)
+- p6_test_colorize_todo(line)
 
-## Hierarchy
-p6test/
-  Tester (api.sh)
-	Backends
-	  Tap (tap.sh)
-  Harness
-  Asserts (asserts.sh)
-  Colorizer (colors.sh)
+### _util.sh:
+- p6_test_dir(test_path)
 
-# Assertions
-- p6_test_assert_blank()
-- p6_test_assert_contains()
-- p6_test_assert_eq()
-- p6_test_assert_not_blank()
-- p6_test_assert_not_contains()
-- p6_test_assert_not_eq()
-- p6_test_assert_run_not_ok()
-- p6_test_assert_run_ok()
-- p6_test_assert_run_no_output()
-- p6_test_assert_run_no_stderr()
-- p6_test_assert_run_no_stdout()
-- p6_test_assert_run_rc()
-- p6_test_assert_dir_exists()
-- p6_test_assert_dir_not_exists()
-- p6_test_assert_len()
+### api.sh:
+- p6_test_bail(reason)
+- p6_test_diagnostic(msg)
+- p6_test_finish()
+- p6_test_not_ok(description)
+- p6_test_ok(description)
+- p6_test_setup(n)
+- p6_test_skip(description, reason)
+- p6_test_start(block)
+- p6_test_teardown()
+- p6_test_todo(val, const, description, reason)
 
-# Run function
+### aserts.sh:
+- p6_test_assert_blank(val, description, reason)
+- p6_test_assert_contains(val, const, description, reason)
+- p6_test_assert_dir_exists(val, description, reason)
+- p6_test_assert_dir_not_exists(val, description, reason)
+- p6_test_assert_eq(val, const, description, reason)
+- p6_test_assert_file_exists(val, description, reason)
+- p6_test_assert_file_not_exists(val, description, reason)
+- p6_test_assert_len(val, const, description, reason)
+- p6_test_assert_not_blank(val, description, reason)
+- p6_test_assert_not_contains(val, const, description, reason)
+- p6_test_assert_not_eq(val, const, description, reason)
+- p6_test_assert_run_no_output(description, reason)
+- p6_test_assert_run_no_stderr(description, reason)
+- p6_test_assert_run_no_stdout(description, reason)
+- p6_test_assert_run_not_ok(description, reason)
+- p6_test_assert_run_ok(description, [rv=0], [stdout=], [stderr=])
+- p6_test_assert_run_rc(description, rv)
 - p6_test_run()
-
-# Run Environment (Post Execution)
+- p6_test_run_rc()
 - p6_test_run_stderr()
 - p6_test_run_stdout()
-- p6_test_run_rc
 
-# Harness
-- p6_test_harness_test_run()
-- p6_test_harness_tests_run()
-
-# Test API
-- p6_test_bail()
-- p6_test_diagnostic()
-- p6_test_dir()
-- p6_test_finish()
-- p6_test_setup()
-- p6_test_skip()
-- p6_test_start()
-- p6_test_teardown()
-- p6_test_todo()
-- p6_test_bench()
-- p6_p6test_bootstrap
-
-# Test Internal API
-- p6_test_not_ok()
-- p6_test_ok()
-
-# Tap backend
-- p6_test_tap_bail_out()
-- p6_test_tap_block()
-- p6_test_tap_diagnostic()
-- p6_test_tap_not_ok()
-- p6_test_tap_ok()
-- p6_test_tap_plan()
+### tap.sh:
+- p6_test_tap_bail_out(reason)
+- p6_test_tap_block(block)
+- p6_test_tap_diagnostic(msg)
+- p6_test_tap_not_ok(description, reason)
+- p6_test_tap_ok(description, reason)
+- p6_test_tap_plan(n)
 - p6_test_tap_shell()
-- p6_test_tap_skip()
-- p6_test_tap_todo_bonus()
-- p6_test_tap_todo_planned()
+- p6_test_tap_skip(description, reason)
+- p6_test_tap_todo_bonus(description, reason)
+- p6_test_tap_todo_planned(description, reason)
 
-# Colorizers
-- p6_test_colorize_bail()
-- p6_test_colorize_block()
-- p6_test_colorize_diagnostic()
-- p6_test_colorize_not_ok()
-- p6_test_colorize_ok()
-- p6_test_colorize_plan()
-- p6_test_colorize_skip()
-- p6_test_colorize_todo()
+### bench.sh:
+- p6_test_bench(times, thing)
+
+### harness.sh:
+- p6_test_harness_test_run()
+- p6_test_harness_tests_run(dir)
+
