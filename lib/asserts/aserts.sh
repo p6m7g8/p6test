@@ -499,3 +499,63 @@ p6_test_assert_dir_not_exists() {
 
     return $rv
 }
+
+######################################################################
+#<
+#
+# Function: p6_test_assert_file_exists(val, description, reason)
+#
+#  Args:
+#	val - 
+#	description - 
+#	reason - 
+#
+#>
+######################################################################
+p6_test_assert_file_exists() {
+    local val="$1"
+    local description="$2"
+    local reason="$3"
+
+    local rv=-1
+    if [ -f "$val" ]; then
+	rv=1
+	p6_test_tap_ok "$description" "$reason"
+    else
+	rv=0
+	p6_test_tap_not_ok "$description" "$reason"
+	p6_test_tap_diagnostic "[$val] DNE"
+    fi
+
+    return $rv
+}
+
+######################################################################
+#<
+#
+# Function: p6_test_assert_file_not_exists(val, description, reason)
+#
+#  Args:
+#	val - 
+#	description - 
+#	reason - 
+#
+#>
+######################################################################
+p6_test_assert_file_not_exists() {
+    local val="$1"
+    local description="$2"
+    local reason="$3"
+
+    local rv=-1
+    if [ ! -f "$val" ]; then
+	rv=1
+	p6_test_tap_ok "$description" "$reason"
+    else
+	rv=0
+	p6_test_tap_not_ok "$description" "$reason"
+	p6_test_tap_diagnostic "[$val] DNE"
+    fi
+
+    return $rv
+}
