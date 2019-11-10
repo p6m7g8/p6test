@@ -51,8 +51,7 @@
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_setup(n)
+# Function: p6_test_setup(n)
 #
 #  Args:
 #	n - 
@@ -69,8 +68,7 @@ p6_test_setup() {
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_start(block)
+# Function: p6_test_start(block)
 #
 #  Args:
 #	block - 
@@ -87,8 +85,7 @@ p6_test_start() {
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_skip(description, reason)
+# Function: p6_test_skip(description, reason)
 #
 #  Args:
 #	description - 
@@ -107,8 +104,7 @@ p6_test_skip() {
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_ok(description)
+# Function: p6_test_ok(description)
 #
 #  Args:
 #	description - 
@@ -124,8 +120,7 @@ p6_test_ok() {
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_not_ok(description)
+# Function: p6_test_not_ok(description)
 #
 #  Args:
 #	description - 
@@ -141,8 +136,7 @@ p6_test_not_ok() {
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_todo(val, const, description, reason)
+# Function: p6_test_todo(val, const, description, reason)
 #
 #  Args:
 #	val - 
@@ -169,8 +163,7 @@ p6_test_todo() {
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_diagnostic(msg)
+# Function: p6_test_diagnostic(msg)
 #
 #  Args:
 #	msg - 
@@ -186,8 +179,7 @@ p6_test_diagnostic() {
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_bail(reason)
+# Function: p6_test_bail(reason)
 #
 #  Args:
 #	reason - 
@@ -204,8 +196,7 @@ p6_test_bail() {
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_finish()
+# Function: p6_test_finish()
 #
 #>
 ######################################################################
@@ -219,8 +210,7 @@ p6_test_finish() {
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_teardown()
+# Function: p6_test_teardown()
 #
 #>
 ######################################################################

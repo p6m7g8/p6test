@@ -1,8 +1,7 @@
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_bench(times, thing)
+# Function: p6_test_bench(times, thing)
 #
 #  Args:
 #	times - 

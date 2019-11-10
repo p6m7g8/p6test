@@ -12,8 +12,7 @@
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_harness_test_run()
+# Function: p6_test_harness_test_run()
 #
 #>
 ######################################################################
@@ -97,8 +96,7 @@ p6_test_harness_test_run() {
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_harness_tests_run(dir)
+# Function: p6_test_harness_tests_run(dir)
 #
 #  Args:
 #	dir - 
@@ -173,8 +171,7 @@ p6_test_harness_tests_run() {
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_harness___results(name, duration, prcnt_passed, passed, total, bonus, todo, skipped)
+# Function: p6_test_harness___results(name, duration, prcnt_passed, passed, total, bonus, todo, skipped)
 #
 #  Args:
 #	name - 
@@ -238,8 +235,7 @@ p6_test_harness___results() {
 ######################################################################
 #<
 #
-# Function:
-#	p6_test_harness__zero_lpad(len, str)
+# Function: p6_test_harness__zero_lpad(len, str)
 #
 #  Args:
 #	len - 
