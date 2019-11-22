@@ -33,6 +33,7 @@
 - p6_test_assert_dir_not_exists(val, description, reason)
 - p6_test_assert_eq(val, const, description, reason)
 - p6_test_assert_file_exists(val, description, reason)
+- p6_test_assert_file_matches(file1, file2, description, reason)
 - p6_test_assert_file_not_exists(val, description, reason)
 - p6_test_assert_len(val, const, description, reason)
 - p6_test_assert_not_blank(val, description, reason)
