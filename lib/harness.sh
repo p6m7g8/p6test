@@ -137,7 +137,7 @@ p6_test_harness_tests_run() {
 	S=$(($S+$Si))
 	T=$(($T+$Ti))
 	p=$(echo "$p+$pi" | bc -q)
-	d=$(echo "$d+$di" | bc -q)
+	d=$(echo "$d+$di" | bc -lq)
 
 	p6_test_harness___results "$dir/$file" "$di" "$pi" "$Pi" "$ti" "$Bi" "$Ti" "$Si" >&2
 	f=$(($f+1))
