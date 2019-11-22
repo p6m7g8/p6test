@@ -499,7 +499,7 @@ p6_test_assert_dir_not_exists() {
     else
 	rv=0
 	p6_test_tap_not_ok "$description" "$reason"
-	p6_test_tap_diagnostic "[$val] DNE"
+	p6_test_tap_diagnostic "[$val] Exists!"
     fi
 
     return $rv
