@@ -32,10 +32,15 @@ p6_test_run() {
     local stderr=$dir/stderr
     local rv=$dir/rv
 
-    echo "$@" > $dir/cli
-    eval "$@" >$stdout 2>$stderr
+
+    exec 3>&1 4>&2 >$stdout 2>$stderr
+    eval "$@"
     local rc=$?
+    exec 1>&3 2>&4
+
     echo $rc > $rv
+    echo "$@" > $dir/cli
+
 }
 
 ######################################################################
