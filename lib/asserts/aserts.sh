@@ -564,3 +564,38 @@ p6_test_assert_file_not_exists() {
 
     return $rv
 }
+
+
+######################################################################
+#<
+#
+# Function: p6_test_assert_file_matches(file1, file2, description, reason)
+#
+#  Args:
+#	file1 - 
+#	file2 - 
+#	description - 
+#	reason - 
+#
+#>
+######################################################################
+p6_test_assert_file_matches() {
+    local file1="$1"
+    local file2="$2"
+    local description="$3"
+    local reason="$4"
+
+    local rv=-1
+    if ! cmp -s $file1 $file2; then
+	rv=1
+	p6_test_tap_ok "$description" "$reason"
+    else
+	local dir=$(p6_test_dir)
+	diff -u $file1 $fille2 > $dir/delta
+	rv=0
+	p6_test_tap_not_ok "$description" "$reason"
+	p6_test_tap_diagnostic "[$val] Differs"
+    fi
+
+    return $rv
+}
