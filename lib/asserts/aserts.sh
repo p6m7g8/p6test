@@ -293,6 +293,31 @@ p6_test_assert_not_eq() {
 ######################################################################
 #<
 #
+# Function: p6_test_assert_len(val, const, description, reason)
+#
+#  Args:
+#	val - 
+#	const - 
+#	description - 
+#	reason - 
+#
+#>
+######################################################################
+p6_test_assert_len() {
+    local val="$1"
+    local const="$2"
+    local description="$3"
+    local reason="$4"
+
+    local len=$(echo $val | wc -m | awk '{print $1}')
+    len=$(($len-1))
+
+    p6_test_assert_eq "$len" "$const" "$description" "$reason"
+}
+
+######################################################################
+#<
+#
 # Function: p6_test_assert_contains(val, const, description, reason)
 #
 #  Args:
@@ -322,31 +347,6 @@ p6_test_assert_contains() {
     esac
 
     return $rv
-}
-
-######################################################################
-#<
-#
-# Function: p6_test_assert_len(val, const, description, reason)
-#
-#  Args:
-#	val - 
-#	const - 
-#	description - 
-#	reason - 
-#
-#>
-######################################################################
-p6_test_assert_len() {
-    local val="$1"
-    local const="$2"
-    local description="$3"
-    local reason="$4"
-
-    local len=$(echo $val | wc -m | awk '{print $1}')
-    len=$(($len-1))
-
-    p6_test_assert_eq "$len" "$const" "$description" "$reason"
 }
 
 ######################################################################
