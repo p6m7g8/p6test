@@ -146,8 +146,11 @@ p6_test_harness_tests_run() {
     local result
     local msg
     local rc
+
+    p6_test__init
+
     if [ x"$P" != x"$t" ]; then
-	msg=$(egrep '^not ok|^#' /tmp/p6/test/tests/*.txt)
+	msg=$(egrep '^not ok|^#' $P6_TEST_DIR/tests/*.txt)
 	result=FAIL
 	rc=2
     else
@@ -164,7 +167,7 @@ p6_test_harness_tests_run() {
     echo "$msg"
     echo "Files=$f, Tests=$P/$t, Todo=$T, Fixed=$B, Skipped=$S, $d wallclock secs"
     echo "Result: $result"
-    rm -rf /tmp/p6/test
+    rm -rf $P6_TEST_DIR
     return $rc
 }
 
