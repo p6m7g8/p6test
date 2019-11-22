@@ -38,7 +38,7 @@ p6_test_harness_test_run() {
     exec 3>&1 4>&2 >$log_file 2>$log_file_times
 
     ## Time and run
-    time env -i P6_TEST_COLOR_OFF=1 $test_env ./$file
+    command time env -i P6_TEST_COLOR_OFF=1 $test_env ./$file
 
     # Restore
     exec 1>&3 2>&4
@@ -85,7 +85,7 @@ p6_test_harness_test_run() {
     esac
 
     # 0m0.330s
-    local Td=$(awk '/real/ { print $2 }' $log_file_times | sed -e 's,^0m,,' -e 's/s//')
+    local Td=$(awk '/real/ { print $1 }' $log_file_times | sed -e 's,^0m,,' -e 's/s//')
     if [ -z "$Td" ]; then
       Td=0
     fi
