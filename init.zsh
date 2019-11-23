@@ -1,4 +1,4 @@
-p6df::modules::p6test::version()        { echo "0.2.0" }
+p6df::modules::p6test::version()        { echo "0.2.1" }
 p6df::modules::p6test::init() {
 
   local dir="$P6_DFZ_SRC_DIR/p6m7g8/p6test"
