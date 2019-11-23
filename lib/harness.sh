@@ -30,7 +30,7 @@ p6_test_harness_test_run() {
     local test_env=$(env | egrep "^(EDITOR|DISPLAY|HOME|PWD|SHELL|SHLVL|TMPDIR|USER|TERM|PATH|P6_TEST_)=")
 
     # Log file
-    local log_file=/tmp/p6/test/tests/$(basename $file).txt
+    local log_file=$P6_TEST_DIR/tests/$(basename $file).txt
     local log_file_times=$log_file-time
     mkdir -p $(dirname $log_file)
 
