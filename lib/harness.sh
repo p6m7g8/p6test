@@ -119,6 +119,8 @@ p6_test_harness_tests_run() {
     local P=0
     local d=0
 
+    p6_test__init
+
     local file
     for file in $(cd $dir ; ls -1); do
 	local vals="$(p6_test_harness_test_run "$dir/$file")"
@@ -146,8 +148,6 @@ p6_test_harness_tests_run() {
     local result
     local msg
     local rc
-
-    p6_test__init
 
     if [ x"$P" != x"$t" ]; then
 	msg=$(egrep '^not ok|^#' $P6_TEST_DIR/tests/*.txt)
