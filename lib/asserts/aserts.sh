@@ -586,15 +586,17 @@ p6_test_assert_file_matches() {
     local reason="$4"
 
     local rv=-1
-    if ! cmp -s $file1 $file2; then
+    if cmp -s $file1 $file2; then
 	rv=1
 	p6_test_tap_ok "$description" "$reason"
     else
-	local dir=$(p6_test_dir)
-	diff -u $file1 $fille2 > $dir/delta
 	rv=0
+
+	local dir=$(p6_test_dir)
+	diff -u $file1 $file2 > $dir/delta.txt
+
 	p6_test_tap_not_ok "$description" "$reason"
-	p6_test_tap_diagnostic "[$val] Differs"
+	p6_test_tap_diagnostic "[$file2] Differs:\n$(cat $dir/delta.txt)"
     fi
 
     return $rv
