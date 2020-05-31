@@ -122,6 +122,7 @@ p6_test_harness_tests_run() {
     p6_test__init
 
     local file
+    if [ -d $dir ]; then
     for file in $(cd $dir ; ls -1); do
 	local vals="$(p6_test_harness_test_run "$dir/$file")"
 
@@ -144,7 +145,7 @@ p6_test_harness_tests_run() {
 	p6_test_harness___results "$dir/$file" "$di" "$pi" "$Pi" "$ti" "$Bi" "$Ti" "$Si" >&2
 	f=$(($f+1))
     done
-
+    fi
     local result
     local msg
     local rc
