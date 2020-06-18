@@ -1,3 +1,7 @@
+### init.zsh:
+- p6df::modules::p6test::init()
+- p6df::modules::p6test::version()
+
 ### _bootstrap.sh:
 - p6_p6test_bootstrap([dir=$P6_DFZ_SRC_P6M7G8_DIR/p6test])
 
