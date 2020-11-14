@@ -4,7 +4,7 @@
 # Function: p6_test_colorize_plan(line)
 #
 #  Args:
-#	line - 
+#	line -
 #
 #>
 ######################################################################
@@ -20,7 +20,7 @@ p6_test_colorize_plan() {
 # Function: p6_test_colorize_not_ok(line)
 #
 #  Args:
-#	line - 
+#	line -
 #
 #>
 ######################################################################
@@ -36,7 +36,7 @@ p6_test_colorize_not_ok() {
 # Function: p6_test_colorize_ok(line)
 #
 #  Args:
-#	line - 
+#	line -
 #
 #>
 ######################################################################
@@ -52,7 +52,7 @@ p6_test_colorize_ok() {
 # Function: p6_test_colorize_skip(line)
 #
 #  Args:
-#	line - 
+#	line -
 #
 #>
 ######################################################################
@@ -68,7 +68,7 @@ p6_test_colorize_skip() {
 # Function: p6_test_colorize_todo(line)
 #
 #  Args:
-#	line - 
+#	line -
 #
 #>
 ######################################################################
@@ -84,7 +84,7 @@ p6_test_colorize_todo() {
 # Function: p6_test_colorize_diagnostic(line)
 #
 #  Args:
-#	line - 
+#	line -
 #
 #>
 ######################################################################
@@ -100,7 +100,7 @@ p6_test_colorize_diagnostic() {
 # Function: p6_test_colorize_block(line)
 #
 #  Args:
-#	line - 
+#	line -
 #
 #>
 ######################################################################
@@ -116,7 +116,7 @@ p6_test_colorize_block() {
 # Function: p6_test_colorize_bail(line)
 #
 #  Args:
-#	line - 
+#	line -
 #
 #>
 ######################################################################
@@ -132,9 +132,9 @@ p6_test_colorize_bail() {
 # Function: p6_test_colorize__say(color_fg, color_bg, msg)
 #
 #  Args:
-#	color_fg - 
-#	color_bg - 
-#	msg - 
+#	color_fg -
+#	color_bg -
+#	msg -
 #
 #>
 ######################################################################
@@ -163,7 +163,7 @@ p6_test_colorize__say() {
 # Function: p6_test_colorize__color_to_code(color)
 #
 #  Args:
-#	color - 
+#	color -
 #
 #>
 ######################################################################

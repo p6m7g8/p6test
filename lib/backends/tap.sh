@@ -4,7 +4,7 @@
 # Function: p6_test_tap_plan(n)
 #
 #  Args:
-#	n - 
+#	n -
 #
 #>
 ######################################################################
@@ -20,8 +20,8 @@ p6_test_tap_plan() {
 # Function: p6_test_tap_ok(description, reason)
 #
 #  Args:
-#	description - 
-#	reason - 
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -39,8 +39,8 @@ p6_test_tap_ok() {
 # Function: p6_test_tap_not_ok(description, reason)
 #
 #  Args:
-#	description - 
-#	reason - 
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -58,7 +58,7 @@ p6_test_tap_not_ok() {
 # Function: p6_test_tap_block(block)
 #
 #  Args:
-#	block - 
+#	block -
 #
 #>
 ######################################################################
@@ -74,8 +74,8 @@ p6_test_tap_block() {
 # Function: p6_test_tap_skip(description, reason)
 #
 #  Args:
-#	description - 
-#	reason - 
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -93,8 +93,8 @@ p6_test_tap_skip() {
 # Function: p6_test_tap_todo_planned(description, reason)
 #
 #  Args:
-#	description - 
-#	reason - 
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -112,8 +112,8 @@ p6_test_tap_todo_planned() {
 # Function: p6_test_tap_todo_bonus(description, reason)
 #
 #  Args:
-#	description - 
-#	reason - 
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -131,7 +131,7 @@ p6_test_tap_todo_bonus() {
 # Function: p6_test_tap_diagnostic(msg)
 #
 #  Args:
-#	msg - 
+#	msg -
 #
 #>
 ######################################################################
@@ -147,7 +147,7 @@ p6_test_tap_diagnostic() {
 # Function: p6_test_tap_bail_out(reason)
 #
 #  Args:
-#	reason - 
+#	reason -
 #
 #>
 ######################################################################
@@ -174,11 +174,11 @@ p6_test_tap_shell() {
 # Function: p6_test_tap__line(outcome, i, description, directive, reason)
 #
 #  Args:
-#	outcome - 
-#	i - 
-#	description - 
-#	directive - 
-#	reason - 
+#	outcome -
+#	i -
+#	description -
+#	directive -
+#	reason -
 #
 #>
 ######################################################################
@@ -209,7 +209,7 @@ p6_test_tap__line() {
 # Function: p6_test_tap__line_colorize(line)
 #
 #  Args:
-#	line - 
+#	line -
 #
 #>
 ######################################################################

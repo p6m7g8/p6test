@@ -54,7 +54,7 @@
 # Function: p6_test_setup(n)
 #
 #  Args:
-#	n - 
+#	n -
 #
 #>
 ######################################################################
@@ -71,7 +71,7 @@ p6_test_setup() {
 # Function: p6_test_start(block)
 #
 #  Args:
-#	block - 
+#	block -
 #
 #>
 ######################################################################
@@ -88,8 +88,8 @@ p6_test_start() {
 # Function: p6_test_skip(description, reason)
 #
 #  Args:
-#	description - 
-#	reason - 
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -107,7 +107,7 @@ p6_test_skip() {
 # Function: p6_test_ok(description)
 #
 #  Args:
-#	description - 
+#	description -
 #
 #>
 ######################################################################
@@ -123,7 +123,7 @@ p6_test_ok() {
 # Function: p6_test_not_ok(description)
 #
 #  Args:
-#	description - 
+#	description -
 #
 #>
 ######################################################################
@@ -139,10 +139,10 @@ p6_test_not_ok() {
 # Function: p6_test_todo(val, const, description, reason)
 #
 #  Args:
-#	val - 
-#	const - 
-#	description - 
-#	reason - 
+#	val -
+#	const -
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -166,7 +166,7 @@ p6_test_todo() {
 # Function: p6_test_diagnostic(msg)
 #
 #  Args:
-#	msg - 
+#	msg -
 #
 #>
 ######################################################################
@@ -182,7 +182,7 @@ p6_test_diagnostic() {
 # Function: p6_test_bail(reason)
 #
 #  Args:
-#	reason - 
+#	reason -
 #
 #>
 ######################################################################
