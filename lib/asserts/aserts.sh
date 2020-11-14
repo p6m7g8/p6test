@@ -93,10 +93,10 @@ p6_test_run_rc() {
 # Function: p6_test_assert_run_ok(description, [rv=0], [stdout=], [stderr=])
 #
 #  Args:
-#	description - 
-#	OPTIONAL rv -  [0]
-#	OPTIONAL stdout -  []
-#	OPTIONAL stderr -  []
+#	description -
+#	OPTIONAL rv - [0]
+#	OPTIONAL stdout - []
+#	OPTIONAL stderr - []
 #
 #>
 ######################################################################
@@ -127,8 +127,8 @@ p6_test_assert_run_ok() {
 # Function: p6_test_assert_run_rc(description, rv)
 #
 #  Args:
-#	description - 
-#	rv - 
+#	description -
+#	rv -
 #
 #>
 ######################################################################
@@ -150,8 +150,8 @@ p6_test_assert_run_rc() {
 # Function: p6_test_assert_run_no_output(description, reason)
 #
 #  Args:
-#	description - 
-#	reason - 
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -169,8 +169,8 @@ p6_test_assert_run_no_output() {
 # Function: p6_test_assert_run_no_stdout(description, reason)
 #
 #  Args:
-#	description - 
-#	reason - 
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -187,8 +187,8 @@ p6_test_assert_run_no_stdout() {
 # Function: p6_test_assert_run_no_stderr(description, reason)
 #
 #  Args:
-#	description - 
-#	reason - 
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -205,8 +205,8 @@ p6_test_assert_run_no_stderr() {
 # Function: p6_test_assert_run_not_ok(description, reason)
 #
 #  Args:
-#	description - 
-#	reason - 
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -226,10 +226,10 @@ p6_test_assert_run_not_ok() {
 # Function: p6_test_assert_eq(val, const, description, reason)
 #
 #  Args:
-#	val - 
-#	const - 
-#	description - 
-#	reason - 
+#	val -
+#	const -
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -261,10 +261,10 @@ p6_test_assert_eq() {
 # Function: p6_test_assert_not_eq(val, const, description, reason)
 #
 #  Args:
-#	val - 
-#	const - 
-#	description - 
-#	reason - 
+#	val -
+#	const -
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -296,10 +296,10 @@ p6_test_assert_not_eq() {
 # Function: p6_test_assert_len(val, const, description, reason)
 #
 #  Args:
-#	val - 
-#	const - 
-#	description - 
-#	reason - 
+#	val -
+#	const -
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -321,10 +321,10 @@ p6_test_assert_len() {
 # Function: p6_test_assert_contains(val, const, description, reason)
 #
 #  Args:
-#	val - 
-#	const - 
-#	description - 
-#	reason - 
+#	val -
+#	const -
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -355,10 +355,10 @@ p6_test_assert_contains() {
 # Function: p6_test_assert_not_contains(val, const, description, reason)
 #
 #  Args:
-#	val - 
-#	const - 
-#	description - 
-#	reason - 
+#	val -
+#	const -
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -391,9 +391,9 @@ p6_test_assert_not_contains() {
 # Function: p6_test_assert_blank(val, description, reason)
 #
 #  Args:
-#	val - 
-#	description - 
-#	reason - 
+#	val -
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -421,9 +421,9 @@ p6_test_assert_blank() {
 # Function: p6_test_assert_not_blank(val, description, reason)
 #
 #  Args:
-#	val - 
-#	description - 
-#	reason - 
+#	val -
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -451,9 +451,9 @@ p6_test_assert_not_blank() {
 # Function: p6_test_assert_dir_exists(val, description, reason)
 #
 #  Args:
-#	val - 
-#	description - 
-#	reason - 
+#	val -
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -481,9 +481,9 @@ p6_test_assert_dir_exists() {
 # Function: p6_test_assert_dir_not_exists(val, description, reason)
 #
 #  Args:
-#	val - 
-#	description - 
-#	reason - 
+#	val -
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -511,9 +511,9 @@ p6_test_assert_dir_not_exists() {
 # Function: p6_test_assert_file_exists(val, description, reason)
 #
 #  Args:
-#	val - 
-#	description - 
-#	reason - 
+#	val -
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -541,9 +541,9 @@ p6_test_assert_file_exists() {
 # Function: p6_test_assert_file_not_exists(val, description, reason)
 #
 #  Args:
-#	val - 
-#	description - 
-#	reason - 
+#	val -
+#	description -
+#	reason -
 #
 #>
 ######################################################################
@@ -572,10 +572,10 @@ p6_test_assert_file_not_exists() {
 # Function: p6_test_assert_file_matches(file1, file2, description, reason)
 #
 #  Args:
-#	file1 - 
-#	file2 - 
-#	description - 
-#	reason - 
+#	file1 -
+#	file2 -
+#	description -
+#	reason -
 #
 #>
 ######################################################################

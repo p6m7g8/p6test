@@ -99,7 +99,7 @@ p6_test_harness_test_run() {
 # Function: p6_test_harness_tests_run(dir)
 #
 #  Args:
-#	dir - 
+#	dir -
 #
 #>
 ######################################################################
@@ -178,14 +178,14 @@ p6_test_harness_tests_run() {
 # Function: p6_test_harness___results(name, duration, prcnt_passed, passed, total, bonus, todo, skipped)
 #
 #  Args:
-#	name - 
-#	duration - 
-#	prcnt_passed - 
-#	passed - 
-#	total - 
-#	bonus - 
-#	todo - 
-#	skipped - 
+#	name -
+#	duration -
+#	prcnt_passed -
+#	passed -
+#	total -
+#	bonus -
+#	todo -
+#	skipped -
 #
 #>
 ######################################################################
@@ -242,8 +242,8 @@ p6_test_harness___results() {
 # Function: p6_test_harness__zero_lpad(len, str)
 #
 #  Args:
-#	len - 
-#	str - 
+#	len -
+#	str -
 #
 #>
 ######################################################################
