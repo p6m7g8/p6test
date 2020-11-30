@@ -119,8 +119,6 @@ p6_test_harness_tests_run() {
     local P=0
     local d=0
 
-set +e
-set -x
     p6_test__init
 
     local file
@@ -171,7 +169,6 @@ set -x
     echo "Files=$f, Tests=$P/$t, Todo=$T, Fixed=$B, Skipped=$S, $d wallclock secs"
     echo "Result: $result"
     rm -rf $P6_TEST_DIR
-set +x
     return $rc
 }
 
