@@ -150,7 +150,7 @@ p6_test_colorize__say() {
        tput setaf "$code_fg"
        tput setab "$code_bg"
     fi
-    echo "$msg\c"
+    echo "$msg"
     if [ -z "$P6_TEST_COLOR_OFF" ]; then
        tput sgr0
     fi
