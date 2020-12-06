@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/p6m7g8/p6test/compare/v1.0.0...v1.1.0) (2020-12-06)
+
+
+### Features
+
+* **api:** centralize ::version() ([5620a03](https://github.com/p6m7g8/p6test/commit/5620a0335ff129f2f73d54ee02539e83bdbd309a))
+* **community:** adds CODE_OF_CONDUCT ([21ec21e](https://github.com/p6m7g8/p6test/commit/21ec21ec432170e025c2b2cb278e7040f5e4a1cd))
+* **github:** adds ISSUE_TEMPLATEs ([40dfae4](https://github.com/p6m7g8/p6test/commit/40dfae4cca7a3efcac99b850e3919c6d77703ff2))
+
+
+* **community:** rely on the .github/ in the org ([#11](https://github.com/p6m7g8/p6test/issues/11)) ([3b198ea](https://github.com/p6m7g8/p6test/commit/3b198ea555f1ff6fe423a8efbda04a15ee575934))
+* **docs:** fixes whitespace ([98c77ff](https://github.com/p6m7g8/p6test/commit/98c77ff4876d38f720222a48a78e9f7b7ba7b5f7))
+* **README:** updates to template v2.0 ([eb2b19b](https://github.com/p6m7g8/p6test/commit/eb2b19b7c41f4c878403207f1182fa477b8a8150))
+* **semantic:** no longer needed, defaults are fine ([dceaab4](https://github.com/p6m7g8/p6test/commit/dceaab41f7647845c86579d0bd818d46e9041e02))
+* **style:** shellchexk and indent ([#12](https://github.com/p6m7g8/p6test/issues/12)) ([17da89e](https://github.com/p6m7g8/p6test/commit/17da89e1751ce4e11188c1fdd7332835e3762a77))
+
 ## [1.0.0](https://github.com/p6m7g8/p6test/compare/v0.2.2...v1.0.0) (2020-10-11)
 
 ### 0.2.2 (2020-09-20)
