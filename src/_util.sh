@@ -146,7 +146,8 @@ p6_test__math_inc() {
     local a="$1"
     local b="${2:-1}"
 
-    local result=$(($a + $b))
+    local result
+    result=$(echo "$a+$b" | bc -lq)
 
     echo "$result"
 }

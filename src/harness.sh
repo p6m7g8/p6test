@@ -153,8 +153,8 @@ p6_test_harness_tests_run() {
             B=$(($B + $Bi))
             S=$(($S + $Si))
             T=$(($T + $Ti))
-            p=$(p6_test__match_inc "$p" "$pi")
-            d=$(p6_test__match_inc "$d" "$di")
+            p=$(p6_test__math_inc "$p" "$pi")
+            d=$(p6_test__math_inc "$d" "$di")
 
             p6_test_harness___results "$dir/$file" "$di" "$pi" "$Pi" "$ti" "$Bi" "$Ti" "$Si" >&2
             f=$(($f + 1))
