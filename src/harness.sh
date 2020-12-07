@@ -81,13 +81,14 @@ p6_test_harness_test_run() {
         rm -f "$log_file"
     fi
 
+    set -x
     local Tr
     Tr=0
     Tr=$(p6_test__math_inc "$Tr" "$TS" "$TT" "$TF" "$Ts")
     local TP
     TP=0
     TP=$(p6_test__math_inc "$TS" "$Ts" "$TT")
-
+    set +x
     local Tp
     case $Tt in
     0) Tp=0.00 ;;
