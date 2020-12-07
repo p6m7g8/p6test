@@ -29,7 +29,7 @@ p6_test_harness_test_run() {
 
     ## Setup env
     local test_env
-    test_env=$(env | grep -E "^(EDITOR|DISPLAY|HOME|PWD|SHELL|SHLVL|TMPDIR|USER|TERM|PATH|P6_TEST_)=")
+    test_env=$(env | grep -E "^(EDITOR|DISPLAY|HOME|PWD|SHELL|SHLVL|TMPDIR|USER|TERM|PATH|P6_TEST_)=" | xargs)
 
     # Log file
     local log_file
@@ -43,7 +43,7 @@ p6_test_harness_test_run() {
     exec 3>&1 4>&2 >"$log_file" 2>"$log_file_times"
 
     ## Time and run
-    command time env -i P6_TEST_COLOR_OFF=1 "$test_env" ./"$file"
+    command time /usr/bin/env -i P6_TEST_COLOR_OFF=1 "$test_env" ./"$file"
 
     # Restore
     exec 1>&3 2>&4
