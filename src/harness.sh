@@ -52,6 +52,7 @@ p6_test_harness_test_run() {
 '
 
     local line
+    cat $log_file >&2
     for line in $(cat "$log_file"); do
         case $line in
         1..*)
