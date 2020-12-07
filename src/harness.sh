@@ -40,7 +40,7 @@ p6_test_harness_test_run() {
     mkdir -p "$dir"
 
     ## Time and run
-    command time /usr/bin/env -i P6_TEST_COLOR_OFF=1 "$test_env" ./"$file" >"$log_file" 2>"$log_file_times"
+    time /usr/bin/env -i P6_TEST_COLOR_OFF=1 "$test_env" ./"$file"
 
     local IFS='
 '
