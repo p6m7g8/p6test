@@ -123,9 +123,9 @@ p6_test_harness_tests_run() {
     local d=0
 
     p6_test__init
-
     local file
     if [ -d "$dir" ]; then
+        set -x
         for file in $(
             cd "$dir" || exit 0
             ls -1
@@ -159,6 +159,7 @@ p6_test_harness_tests_run() {
             p6_test_harness___results "$dir/$file" "$di" "$pi" "$Pi" "$ti" "$Bi" "$Ti" "$Si" >&2
             f=$(($f + 1))
         done
+        set +x
     fi
     local result
     local msg
