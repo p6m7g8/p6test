@@ -50,6 +50,8 @@ p6_test_harness_test_run() {
 
     local IFS='
 '
+    echo "$log_file" >&2
+    cat "$log_file" >&2
 
     local line
     for line in $(cat "$log_file"); do
@@ -61,7 +63,7 @@ p6_test_harness_test_run() {
             TS=$(p6_test__math_inc "$TS")
             ;;
         not\ *TODO\ *)
-            TT=$(p6_test__math_inc "$TT"
+            TT=$(p6_test__math_inc "$TT")
             ;;
         ok\ *TODO\ *)
             TB=$(p6_test__math_inc "$TB")
@@ -71,9 +73,7 @@ p6_test_harness_test_run() {
             TF=$(p6_test__math_inc "$TF")
             ;;
         ok\ *)
-            set -x
             Ts=$(p6_test__math_inc "$Ts")
-            set +x
             ;;
         esac
     done
@@ -82,14 +82,13 @@ p6_test_harness_test_run() {
         rm -f "$log_file"
     fi
 
-    set -x
     local Tr
     Tr=0
     Tr=$(p6_test__math_inc "$Tr" "$TS" "$TT" "$TF" "$Ts")
     local TP
     TP=0
     TP=$(p6_test__math_inc "$TS" "$Ts" "$TT")
-    set +x
+
     local Tp
     case $Tt in
     0) Tp=0.00 ;;
