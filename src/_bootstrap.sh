@@ -14,7 +14,6 @@ p6_p6test_bootstrap() {
 
   local file
   for file in $(find $dir -type f -name "*.sh" | xargs); do
-  echo  . "$file"
-  . "$file"
+    . "$file"
   done
 }

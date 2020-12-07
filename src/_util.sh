@@ -144,10 +144,16 @@ p6_test__i() {
 
 p6_test__math_inc() {
     local a="$1"
-    local b="${2:-1}"
+    shift 1
+    local b="${1:-1}"
+    shift 1
 
     local result
-    result=$(echo "$a+$b" | bc -lq)
+    result=$a
+    local ord
+    for ord in "$b" "$@"; do
+        result=$(echo "$result+$ord" | bc -lq)
+    done
 
     echo "$result"
 }
@@ -170,4 +176,12 @@ p6_test__math_gt() {
     local rc=$?
 
     return $rc
+}
+
+p6_test__math_percent() {
+    local t="$1"
+    local b="$2"
+    local s="${3:-3}"
+
+    echo "scale=$s; ($t/$b)*100" | bc -lq
 }

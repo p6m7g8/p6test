@@ -59,20 +59,20 @@ p6_test_harness_test_run() {
             Tt=$(echo "$line" | sed -e 's,^1..,,' -e 's, *,,')
             ;;
         ok\ *SKIP*\ *)
-            TS=$(($TS + 1))
+            TS=$(p6_test__math_inc "$TS")
             ;;
         not\ *TODO\ *)
-            TT=$(($TT + 1))
+            TT=$(p6_test__math_inc "$TT"
             ;;
         ok\ *TODO\ *)
-            TB=$(($TB + 1))
-            Ts=$(($Ts + 1))
+            TB=$(p6_test__math_inc "$TB")
+            Ts=$(p6_test__math_inc "$Ts")
             ;;
         not\ ok*)
-            TF=$(($TF + 1))
+            TF=$(p6_test__math_inc "$TF")
             ;;
         ok\ *)
-            Ts=$(($Ts + 1))
+            Ts=$(p6_test__math_inc "$Ts")
             ;;
         esac
     done
@@ -81,13 +81,17 @@ p6_test_harness_test_run() {
         rm -f "$log_file"
     fi
 
-    local Tr=$(($TS + $TT + $TF + $Ts))
-    local TP=$(($TS + $Ts + $TT))
+    local Tr
+    Tr=0
+    Tr=$(p6_test__math_inc "$Tr" "$TS" "$TT" "$TF" "$Ts")
+    local TP
+    TP=0
+    TP=$(p6_test__math_inc "$TS" "$Ts" "$TT")
 
     local Tp
     case $Tt in
     0) Tp=0.00 ;;
-    *) Tp=$(echo "scale=3; ($TP/$Tt)*100" | bc -lq) ;;
+    *) Tp=$(p6_test__math_percent "$TP" "$Tt") ;;
     esac
 
     # 0m0.330s
@@ -126,7 +130,6 @@ p6_test_harness_tests_run() {
     p6_test__init
     local file
     if [ -d "$dir" ]; then
-        set -x
         for file in $(
             cd "$dir" || exit 0
             ls -1
@@ -160,7 +163,6 @@ p6_test_harness_tests_run() {
             p6_test_harness___results "$dir/$file" "$di" "$pi" "$Pi" "$ti" "$Bi" "$Ti" "$Si" >&2
             f=$(($f + 1))
         done
-        set +x
     fi
     local result
     local msg
