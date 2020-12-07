@@ -71,7 +71,9 @@ p6_test_harness_test_run() {
             TF=$(p6_test__math_inc "$TF")
             ;;
         ok\ *)
+            set -x
             Ts=$(p6_test__math_inc "$Ts")
+            set +x
             ;;
         esac
     done
