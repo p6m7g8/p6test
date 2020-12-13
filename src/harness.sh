@@ -274,3 +274,86 @@ p6_test_harness__zero_lpad() {
 
     echo "$str"
 }
+
+# --------------------------------------------------------------------------------------------------------
+
+p6_test_harness_test_run() {
+    local file="$1"
+}
+
+p6_test_harness_tests_run() {
+    local dir="$1"
+
+    for file in $(
+        cd "$dir" || exit 0
+        ls -1
+    ); do
+        p6_test_harness_test_run "$dir/$file" >>"/tmp/$file.txt"
+    done
+}
+
+p6_test_harness___results() {
+    local file="$1"
+
+    # read file
+    local name="$1"
+    local duration="$2"
+    local prcnt_passed="$3"
+    local passed="$4"
+    local total="$5"
+    local bonus="$6"
+    local todo="$7"
+    local skipped="$8"
+
+    local len=${#name}
+
+    local line=$name
+    local i=$len
+    while [ "$i" -lt 48 ]; do
+        line="$line."
+        i=$(p6_test__math_inc "$i")
+    done
+
+    passed=$(p6_test_harness__zero_lpad "3" "$passed")
+    total=$(p6_test_harness__zero_lpad "3" "$total")
+
+    line="$line ${duration}s $passed/$total $prcnt_passed%"
+    if [ "$bonus" -gt 0 ]; then
+        line="$line [$bonus now pass]"
+    else
+        if [ "$todo" -gt 0 ]; then
+            line="$line, todo=$todo"
+        fi
+    fi
+    if [ "$skipped" -gt 0 ]; then
+        line="$line, skipped=$skipped"
+    fi
+
+    local color
+    if [ "$passed" -eq "$total" ]; then
+        if [ "$bonus" -gt 0 ]; then
+            color=yellow
+        else
+            color=green
+        fi
+    else
+        color=red
+    fi
+    p6_test_colorize__say "$color" "black" "$line"
+
+}
+
+p6_test_harness__zero_lpad() {
+    local len="$1"
+    local str="$2"
+
+    local str_len=${#str}
+
+    local i=$str_len
+    while [ "$i" -lt $len ]; do
+        str="0$str"
+        i=$(($i + 1))
+    done
+
+    echo "$str"
+}
