@@ -153,10 +153,10 @@ p6_test_todo() {
     local reason="$4"
 
     if [ x"$val" = x"$const" ]; then
-	p6_test_tap_todo_bonus "$description" "$reason"
+        p6_test_tap_todo_bonus "$description" "$reason"
     else
-	p6_test_tap_todo_planned "$description" "$reason"
-	p6_test_diagnostic "expected [$const], received [$val]"
+        p6_test_tap_todo_planned "$description" "$reason"
+        p6_test_diagnostic "expected [$const], received [$val]"
     fi
 }
 
@@ -203,7 +203,7 @@ p6_test_bail() {
 p6_test_finish() {
 
     if p6_test__cleanup; then
-	exit 1
+        exit 1
     fi
 }
 

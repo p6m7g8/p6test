@@ -191,13 +191,13 @@ p6_test_tap__line() {
 
     local line="$outcome $i"
     if [ -n "$description" ]; then
-	line="$line $description"
-	if [ -n "$directive" ]; then
-	    line="$line # $directive"
-	    if [ -n "$reason" ]; then
-		line="$line $reason"
-	    fi
-	fi
+        line="$line $description"
+        if [ -n "$directive" ]; then
+            line="$line # $directive"
+            if [ -n "$reason" ]; then
+                line="$line $reason"
+            fi
+        fi
     fi
 
     p6_test_tap__line_colorize "$line"
@@ -217,11 +217,11 @@ p6_test_tap__line_colorize() {
     local line="$1"
 
     case $line in
-	ok\ *SKIP*\ *) p6_test_colorize_skip         "$line" ;;
-	not\ *TODO\ *) p6_test_colorize_todo         "$line" ;;
-	not\ ok*)      p6_test_colorize_not_ok       "$line" ;;
-	ok\ *)         p6_test_colorize_ok           "$line" ;;
-	*)             p6_test_colorize_not_ok "FAIL: $line" ;;
+    ok\ *SKIP*\ *) p6_test_colorize_skip "$line" ;;
+    not\ *TODO\ *) p6_test_colorize_todo "$line" ;;
+    not\ ok*) p6_test_colorize_not_ok "$line" ;;
+    ok\ *) p6_test_colorize_ok "$line" ;;
+    *) p6_test_colorize_not_ok "FAIL: $line" ;;
     esac
 }
 

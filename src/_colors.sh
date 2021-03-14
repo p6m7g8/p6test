@@ -147,12 +147,12 @@ p6_test_colorize__say() {
     local code_bg=$(p6_test_colorize__color_to_code "$color_bg")
 
     if [ -z "$P6_TEST_COLOR_OFF" ]; then
-       tput setaf "$code_fg"
-       tput setab "$code_bg"
+        tput setaf "$code_fg"
+        tput setab "$code_bg"
     fi
     echo "$msg"
     if [ -z "$P6_TEST_COLOR_OFF" ]; then
-       tput sgr0
+        tput sgr0
     fi
     echo
 }
@@ -173,14 +173,14 @@ p6_test_colorize__color_to_code() {
     local code
 
     case $color in
-	black)   code=0 ;;
-	red)     code=1 ;;
-	green)   code=2 ;;
-	yellow)  code=3 ;;
-	blue)    code=4 ;;
-	magenta) code=5 ;;
-	cyan)    code=6 ;;
-	white)   code=7 ;;
+    black) code=0 ;;
+    red) code=1 ;;
+    green) code=2 ;;
+    yellow) code=3 ;;
+    blue) code=4 ;;
+    magenta) code=5 ;;
+    cyan) code=6 ;;
+    white) code=7 ;;
     esac
 
     echo $code
