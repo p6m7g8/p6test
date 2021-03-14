@@ -1,11 +1,10 @@
-TAG LINE
-# .
+# p6test
 
 ## Table of Contents
 
 
-### .
-- [.](#.)
+### p6test
+- [p6test](#p6test)
   - [Badges](#badges)
   - [Distributions](#distributions)
   - [Summary](#summary)
@@ -18,8 +17,12 @@ TAG LINE
 ### Badges
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-yellowgreen.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/p6m7g8/.)
-[![Mergify](https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/p6m7g8/./&style=flat)](https://mergify.io)
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/p6m7g8/p6test)
+[![Mergify](https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/p6m7g8/p6test/&style=flat)](https://mergify.io)
+[![codecov](https://codecov.io/gh/p6m7g8/p6test/branch/master/graph/badge.svg?token=14Yj1fZbew)](https://codecov.io/gh/p6m7g8/p6test)
+[![Known Vulnerabilities](https://snyk.io/test/github/p6m7g8/p6test/badge.svg?targetFile=package.json)](https://snyk.io/test/github/p6m7g8/p6test?targetFile=package.json)
+[![Gihub repo dependents](https://badgen.net/github/dependents-repo/p6m7g8/p6test)](https://github.com/p6m7g8/p6test/network/dependents?dependent_type=REPOSITORY)
+[![Gihub package dependents](https://badgen.net/github/dependents-pkg/p6m7g8/p6test)](https://github.com/p6m7g8/p6test/network/dependents?dependent_type=PACKAGE)
 
 ## Summary
 
@@ -29,23 +32,26 @@ TAG LINE
 
 ## Code of Conduct
 
-- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Code of Conduct](https://github.com/p6m7g8/.github/blob/master/CODE_OF_CONDUCT.md)
 
 ## Changes
 
 - [Change Log](CHANGELOG.md)
 
-### Usage
+## Usage
 
-#### init.zsh:
+### p6test:
+
+#### p6test/init.zsh:
 
 - p6df::modules::p6test::init()
 
-#### _bootstrap.sh:
+### ../p6test/lib:
+
+#### ../p6test/lib/_bootstrap.sh:
 
 - p6_p6test_bootstrap([dir=$P6_DFZ_SRC_P6M7G8_DIR/p6test])
-
-#### _colors.sh:
+#### ../p6test/lib/_colors.sh:
 
 - p6_test_colorize_bail(line)
 - p6_test_colorize_block(line)
@@ -55,12 +61,10 @@ TAG LINE
 - p6_test_colorize_plan(line)
 - p6_test_colorize_skip(line)
 - p6_test_colorize_todo(line)
-
-#### _util.sh:
+#### ../p6test/lib/_util.sh:
 
 - p6_test_dir(test_path)
-
-#### api.sh:
+#### ../p6test/lib/api.sh:
 
 - p6_test_bail(reason)
 - p6_test_diagnostic(msg)
@@ -72,8 +76,17 @@ TAG LINE
 - p6_test_start(block)
 - p6_test_teardown()
 - p6_test_todo(val, const, description, reason)
+#### ../p6test/lib/bench.sh:
 
-#### aserts.sh:
+- p6_test_bench(times, thing)
+#### ../p6test/lib/harness.sh:
+
+- p6_test_harness_test_run()
+- p6_test_harness_tests_run(dir)
+
+### asserts:
+
+#### asserts/aserts.sh:
 
 - p6_test_assert_blank(val, description, reason)
 - p6_test_assert_contains(val, const, description, reason)
@@ -98,7 +111,9 @@ TAG LINE
 - p6_test_run_stderr()
 - p6_test_run_stdout()
 
-#### tap.sh:
+### backends:
+
+#### backends/tap.sh:
 
 - p6_test_tap_bail_out(reason)
 - p6_test_tap_block(block)
@@ -110,15 +125,6 @@ TAG LINE
 - p6_test_tap_skip(description, reason)
 - p6_test_tap_todo_bonus(description, reason)
 - p6_test_tap_todo_planned(description, reason)
-
-#### bench.sh:
-
-- p6_test_bench(times, thing)
-
-#### harness.sh:
-
-- p6_test_harness_test_run()
-- p6_test_harness_tests_run(dir)
 
 
 ## Author
