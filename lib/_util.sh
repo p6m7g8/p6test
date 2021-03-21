@@ -15,7 +15,7 @@ p6_test_dir() {
     if [ -z "$test_path" ]; then
 	dir_name=$P6_TEST_DIR_ROOT
     else
-	local rand=$(cat /dev/urandom | env LC_CTYPE=C tr -dc a-zA-Z0-9 | head -c 5)
+	local rand=$(cat /dev/urandom | env LC_ALL=C tr -dc a-zA-Z0-9 | head -c 5)
 	dir_name="$test_path/$rand"
 
 	mkdir -p $dir_name
