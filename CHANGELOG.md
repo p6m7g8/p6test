@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/p6m7g8/p6test/compare/v1.1.0...v1.1.1) (2021-04-04)
+
+
+### Bug Fixes
+
+* p6_test_dir - LC_ALL=C ([b54dd62](https://github.com/p6m7g8/p6test/commit/b54dd6218c14d81030ecb11736dc0d1767333572))
+
+
+* **README:** updates template ([#16](https://github.com/p6m7g8/p6test/issues/16)) ([02839ce](https://github.com/p6m7g8/p6test/commit/02839cea1872590f85da9bda10b606e9fa092839))
+
 ## [1.1.0](https://github.com/p6m7g8/p6test/compare/v1.0.0...v1.1.0) (2020-12-06)
 
 
